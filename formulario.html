@@ -1,0 +1,128 @@
+<!DOCTYPE HTML>
+<html lang="es-US">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1, maximum-scale=1">
+	<title>LaMira</title>
+	<link rel="stylesheet" href="estilos.css" />
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+</head>
+<body>
+<div class="loader"></div>
+
+<header>
+
+<h1>LaMira</h1>
+
+<nav>
+<span id="menu">menu</span>
+<div id="desplegable">
+	<div id="desplegable_conten">
+	<figure id="logo">
+		<img src="img/logo.png" alt="logo" />
+	</figure>
+		<a href="#Productos">Politica</a>
+		<a href="#QuienesSomos">Economia</a>
+		<a href="#Contacto">Social</a>
+		<a href="#Contacto">Seguridad</a>
+		<a href="#Contacto">Comunitarios</a>
+	</div>
+</div>
+</nav>
+
+</header>
+
+
+
+
+<main>
+
+
+<section id="formulario">
+<h2>Noticias</h2>
+<small>Editar noticias</small>
+
+<form class="agregar" method="post" enctype="multipart/form-data" action="#">
+
+<span>Titulo</span>
+<input type="text" name="titulo" value="TITULO"/>
+
+<span>Imagen</span>
+<input type="file" name="imagen"/>
+
+<div>
+<span>Preview</span>
+<textarea name="preview" rows="10" cols="50"></textarea>
+
+<span>Descripcion</span>
+<textarea name="descripcion" rows="10" cols="50"></textarea>
+</div>
+
+<select name="categoria">
+
+	<option value="Politica">Politica</option>
+	<option value="Deporte">Deporte</option>
+
+</select>
+
+<input type="hidden" name="id" value="id"/>
+
+<input type="submit" value="aceptar" />
+
+</form>
+</section>
+
+</main>
+
+<footer>
+
+<div>
+<figure>
+	<img src="img/redes.png" alt="redes" />
+</figure>
+	<h3>Redes Sociales</h3>
+
+<picture>
+	<a href="https://www.facebook.com/lamirafsa">
+		<img src="img/facebook.png" alt="facebook" />
+	</a>
+	</picture>	
+	
+	<picture>
+	<a href="https://www.instagram.com/">
+		<img src="img/instagram.png" alt="instagram" />
+	</a>
+	</picture>	
+	
+	<picture>
+	<a href="https://twitter.com/">
+		<img src="img/twitter.png" alt="twitter" />
+	</a>
+	</picture>	
+	
+	
+	
+</div>
+<div>
+<figure>
+	<img src="img/llamanos.png" alt="llamanos" />
+</figure>
+	<h3>Llamanos</h3>
+
+		<small>(+54) 011 - 25330136</small>
+</div>
+<div>
+<figure>
+	<img src="img/ubicacion.png" alt="ubicacion" />
+</figure>
+	<h3>Ubicación</h3>
+	<small>Formosa Capital</small>
+</div>
+
+
+</footer>
+
+
+<script type="text/javascript" src="mi_js.js"></script>
+</body>
+</html>

@@ -1,0 +1,123 @@
+<!DOCTYPE HTML>
+<html lang="es-US">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1, maximum-scale=1">
+	<title>LaMira</title>
+	<link rel="stylesheet" href="estilos.css" />
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+</head>
+<body>
+<div class="loader"></div>
+
+<header>
+
+<h1>LaMira</h1>
+
+<nav>
+<span id="menu">menu</span>
+<div id="desplegable">
+	<div id="desplegable_conten">
+	<figure id="logo">
+		<img src="img/logo.png" alt="logo" />
+	</figure>
+		<a href="#Productos">Politica</a>
+		<a href="#QuienesSomos">Economia</a>
+		<a href="#Contacto">Social</a>
+		<a href="#Contacto">Seguridad</a>
+		<a href="#Contacto">Comunitarios</a>
+	</div>
+</div>
+</nav>
+
+</header>
+
+
+
+
+<main>
+
+
+
+<section id="log_panel">
+
+<h2>Panel Administrador</h2>
+<small>Accede al panel para administradores</small>
+
+<form method="post" action="acciones/login.php">
+
+<div>
+	<span>Usuario</span>
+	<input type="text" name="usuario"/>
+</div>
+
+<div>
+	<span>Clave</span>
+	<input type="password" name="clave"/>
+</div>
+
+<input type="submit" value="acceder"/>
+
+<a href="acciones/logout.php">Salir</a>
+
+
+</form>
+
+
+</section>
+
+
+</main>
+
+<footer>
+
+<div>
+<figure>
+	<img src="img/redes.png" alt="redes" />
+</figure>
+	<h3>Redes Sociales</h3>
+
+<picture>
+	<a href="https://www.facebook.com/lamirafsa">
+		<img src="img/facebook.png" alt="facebook" />
+	</a>
+	</picture>	
+	
+	<picture>
+	<a href="https://www.instagram.com/">
+		<img src="img/instagram.png" alt="instagram" />
+	</a>
+	</picture>	
+	
+	<picture>
+	<a href="https://twitter.com/">
+		<img src="img/twitter.png" alt="twitter" />
+	</a>
+	</picture>	
+	
+	
+	
+</div>
+<div>
+<figure>
+	<img src="img/llamanos.png" alt="llamanos" />
+</figure>
+	<h3>Llamanos</h3>
+
+		<small>(+54) 011 - 25330136</small>
+</div>
+<div>
+<figure>
+	<img src="img/ubicacion.png" alt="ubicacion" />
+</figure>
+	<h3>Ubicación</h3>
+	<small>Formosa Capital</small>
+</div>
+
+
+</footer>
+
+
+<script type="text/javascript" src="mi_js.js"></script>
+</body>
+</html>
