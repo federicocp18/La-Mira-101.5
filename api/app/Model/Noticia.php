@@ -13,6 +13,9 @@
 		public $id_noticia;
 		
 		/** @var string **/
+		public $titulo;
+		
+		/** @var string **/
 		public $descripcion;
 		
 		/** @var Categoria **/
@@ -69,6 +72,7 @@
 		public function jsonSerialize(){
 			return [
 				'id_noticia'	=> $this->id_noticia,
+				'titulo'		=> $this->titulo,
 				'descripcion'	=> $this->descripcion,
 				'categoria'		=> $this->categoria,
 				'preview'		=> $this->preview,
@@ -78,6 +82,7 @@
 		
 		public function cargarDatos($fila){
 			$this->id_noticia	= $fila['id_noticia'];
+			$this->titulo		= $fila['titulo'];
 			$this->descripcion	= $fila['descripcion'];
 			$this->categoria 	= new Categoria($fila['id_categoria']);
 			$this->preview		= $fila['preview'];
