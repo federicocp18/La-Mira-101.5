@@ -12,7 +12,7 @@
 		public $id_usuario;
 		
 		/** @var string **/
-		public $email;
+		public $correo;
 		
 		/** @var string **/
 		public $nombre;
@@ -24,10 +24,10 @@
 		public static $reglas = [
 			'login' => [
 				'clave' => 'required|min:4',
-				'email' => 'required|exists:usuarios'
+				'correo' => 'required|exists:usuarios'
 			],'register' => [
 				'clave' => 'required|min:4|confirmed',
-				'email' => 'required|unique:usuarios',
+				'correo' => 'required|unique:usuarios',
 				'nombre' => 'required|min:2'
 			],'edit' => [
 				'nombre' => 'required|min:2'
@@ -35,7 +35,7 @@
 		];
 		
 		/**
-			* Constructor de usuario, ya sea por id o por email y contraseña.
+			* Constructor de usuario, ya sea por id o por correo y contraseña.
 			* 
 			* @param null|int $id_usuario EL ID del Usuario.
 			* @param null|array $datos Los datos del Usuario a crear.
@@ -65,7 +65,7 @@
 		public function jsonSerialize(){
 			return [
 				'id_usuario'	=> $this->id_usuario,
-				'email'			=> $this->email,
+				'correo'			=> $this->correo,
 				'nombre'		=> $this->nombre
 			];
 		}
@@ -77,7 +77,7 @@
 		**/
 		public function cargarDatos($fila){
 			$this->id_usuario	= $fila['id_usuario'];
-			$this->email		= $fila['email'];
+			$this->correo		= $fila['correo'];
 			$this->nombre		= $fila['nombre'];
 			$this->clave		= $fila['clave'];
 		}

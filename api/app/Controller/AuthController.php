@@ -12,7 +12,7 @@
 
 	class AuthController{
 		/** Intenta loguear a un Usuario. **/
-		public function login(){
+		public function doLogin(){
 			$datos = file_get_contents('php://input');
 			$datos = json_decode($datos, true);
 			
@@ -20,16 +20,23 @@
 			
 			try{
 				// $validator = new Validator($datos, $reglas);
+
+				$newData = [
+					'nombre' => $_POST['nombre'],
+					'clave' => md5($_POST['clave'])
+				];
 				
-				if(!Auth::attemptLogin($datos)){
+				if(Auth::attemptLogin($newData)){
+					$auth = Auth::attemptLogin($newData);
+				}else{
 					View::render([
 						'status' => 0,
-						'message' => 'Correo o Contraseña incorrectos.'
+						'message' => 'Usuario o Contraseña incorrectos.'
 					]);
 					die();
 				}
 
-				$token = new Token(Auth::id());
+				$token = new Token($auth->id());
 				$tokenGenerado = $token->getToken();
 				
 				View::render([
@@ -40,13 +47,13 @@
 			}catch(Exception $excepcion){
 				View::render([
 					'status' => 0,
-					'message' => $excepcion->getMessage()
+					'message' => Auth::attemptLogin($newData)
 				]);
 			}
 		}
 
 		/** Intenta desloguear a un Usuario. **/
-		public function logout(){
+		public function doLogout(){
 			try{
 				Auth::exit();
 				
