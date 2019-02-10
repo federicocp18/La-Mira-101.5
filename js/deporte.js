@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', function(){
     console.log(API);
-    let politica = {
-        contenido: document.querySelector('#politica'),
+    let deporte = {
+        contenido: document.querySelector('#deporte'),
         load: function(data){
             for(let posicion in data){
                 let a = document.createElement('a');
@@ -30,11 +30,11 @@ document.addEventListener('DOMContentLoaded', function(){
         },
     };
 
-    /** Carga la seccion politica entera. */
+    /** Carga la seccion deporte entera. */
     async function load(){
-        respuesta = await getData('/noticias/1');
+        respuesta = await getData('/noticias/4');
         if(respuesta.status){
-            politica.load(respuesta.datos.noticias);
+            deporte.load(respuesta.datos.noticias);
         }
     }
 

@@ -1,7 +1,4 @@
 document.addEventListener('DOMContentLoaded', function(){
-    const URL = window.location.href;
-    const API = URL + 'api/public';
-
     let politica = {
         contenido: document.querySelector('#politica'),
         load: function(data){
@@ -182,7 +179,7 @@ document.addEventListener('DOMContentLoaded', function(){
         },
     };
 
-    /** Carga la web entera. */
+    /** Carga la home entera. */
     async function load(){
         respuesta = await getData('/home');
         if(respuesta.status){
