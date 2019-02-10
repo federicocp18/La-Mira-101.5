@@ -21,4 +21,6 @@
 	/** AuthController */
 	Route::addRoute('POST', '/login', 'AuthController@doLogin');
 
+	Route::addRoute('POST', '/verificar', 'AuthController@verifyToken');
+
 	Route::addRoute('GET', '/logout', 'AuthController@doLogout');
