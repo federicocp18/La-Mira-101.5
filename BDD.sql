@@ -7,9 +7,9 @@ CREATE TABLE categorias(
 	nombre VARCHAR(50)
 )ENGINE=innoDB;
 
-CREATE TABLE usuarios(
+CREATE TABLE usuarios( 
 	id_usuario INT(10) UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT UNIQUE,
-	email VARCHAR(70) NOT NULL UNIQUE,
+	correo VARCHAR(70) NOT NULL UNIQUE,
 	clave VARCHAR(100) NOT NULL,
 	nombre VARCHAR(50)
 )ENGINE=innoDB;
@@ -23,6 +23,11 @@ CREATE TABLE noticias(
 	id_categoria INT(10) UNSIGNED,
 	FOREIGN KEY (id_categoria) REFERENCES categorias(id_categoria) ON DELETE SET NULL ON UPDATE CASCADE
 )ENGINE=innoDB;
+
+INSERT INTO
+	usuarios (correo,clave,nombre)
+VALUES
+	('admin@admin.com',md5('admin'),'admin');
 
 INSERT INTO 
 	categorias (id_categoria, nombre)

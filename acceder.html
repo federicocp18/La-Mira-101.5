@@ -45,22 +45,19 @@
 <h2>Panel Administrador</h2>
 <small>Accede al panel para administradores</small>
 
-<form method="post" action="acciones/login.php">
+<form method="post">
 
-<div>
-	<span>Usuario</span>
-	<input type="text" name="usuario"/>
-</div>
+	<div>
+		<span>Usuario</span>
+		<input type="text" name="nombre"/>
+	</div>
 
-<div>
-	<span>Clave</span>
-	<input type="password" name="clave"/>
-</div>
+	<div>
+		<span>Clave</span>
+		<input type="password" name="clave"/>
+	</div>
 
-<input type="submit" value="acceder"/>
-
-<a href="acciones/logout.php">Salir</a>
-
+	<input type="submit" value="acceder"/>
 
 </form>
 
@@ -120,5 +117,8 @@
 
 
 <script type="text/javascript" src="mi_js.js"></script>
+<script src="js/url.js"></script>
+<script src="js/localstorage.js"></script>
+<script src="js/acceder.js"></script>
 </body>
 </html>
