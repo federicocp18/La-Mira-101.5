@@ -30,22 +30,38 @@ document.addEventListener('DOMContentLoaded', function(){
                     let td5 = document.createElement('td');
                     tr.appendChild(td5);
 
-                        let p = document.createElement('p');
-                        p.innerHTML = data[posicion].categoria.nombre;
-                        td5.appendChild(p);
-                    
-                    let td6 = document.createElement('td');
-                    tr.appendChild(td6);
-
                         let a1 = document.createElement('a');
                         a1.href = 'formulario.html?noticia=' + data[posicion].id_noticia;
                         a1.innerHTML = 'Editar';
-                        td6.appendChild(a1);
+                        td5.appendChild(a1);
 
                         let a2 = document.createElement('a');
                         a2.href = '#';
                         a2.innerHTML = 'Borrar';
-                        td6.appendChild(a2);
+                        a2.dataset.id_noticia = data[posicion].id_noticia;
+                        td5.appendChild(a2);
+            }
+        },
+    };
+    
+    let botones = {
+        load: function(){
+            let links = document.querySelectorAll('a[data-id_noticia]');
+            for(let i = 0; i < links.length; i++){
+                links[i].addEventListener('click', function(evento){
+                    evento.preventDefault();
+
+                    botones.eliminar(this.dataset.id_noticia);
+                });
+            }
+        },
+        eliminar: async function(id_noticia){
+            let respuesta = await sendData('/noticia/' + id_noticia + '/eliminar');
+            if(respuesta.status){
+                let tr = document.querySelector('a[data-id_noticia="' + id_noticia + '"]').parentNode.parentNode;
+                politica.contenido.removeChild(tr);
+            }else{
+                console.log(respuesta.error);
             }
         },
     };
@@ -56,6 +72,7 @@ document.addEventListener('DOMContentLoaded', function(){
         if(respuesta.status){
             politica.load(respuesta.datos.noticias);
         }
+        botones.load();
     }
 
     load();
@@ -72,5 +89,19 @@ document.addEventListener('DOMContentLoaded', function(){
             }).catch(error => {
                 console.log(error);
             })
+    }
+
+    /**
+     * Envia datos a la API.
+     * 
+     * @param {string} ruta 
+     * @param {FormData} BODY 
+     */
+    async function sendData(ruta){
+        return await fetch(API + ruta,{
+            method: 'DELETE',
+        }).then(respuesta => {
+            return respuesta.json();
+        }).catch();
     }
 });

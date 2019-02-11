@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', function(){
-    console.log(API);
+    
     let comunitarios = {
         contenido: document.querySelector('#comunitarios'),
         load: function(data){

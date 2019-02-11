@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', function(){
-    console.log(API);
+    
     let politica = {
         contenido: document.querySelector('#politica'),
         load: function(data){

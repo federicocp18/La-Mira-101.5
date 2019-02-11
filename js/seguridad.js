@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', function(){
-    console.log(API);
+    
     let seguridad = {
         contenido: document.querySelector('#seguridad'),
         load: function(data){

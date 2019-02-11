@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', function(){
-    console.log(API);
+    
     let deporte = {
         contenido: document.querySelector('#deporte'),
         load: function(data){

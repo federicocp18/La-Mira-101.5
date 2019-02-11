@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', function(){
-    console.log(API);
+    
     let economia = {
         contenido: document.querySelector('#economia'),
         load: function(data){

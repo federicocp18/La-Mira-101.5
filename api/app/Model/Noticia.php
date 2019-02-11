@@ -149,14 +149,15 @@
 			return $salida;
 		}
 		
-		public static function doCreate($datos){
+		public static function create($datos){
 			$db = DBConnection::getConeccion();
 			
-			$query = "INSERT INTO noticias (descripcion, id_categoria, preview, imagen) VALUES (:descripcion, :id_categoria, :preview, :imagen)";
+			$query = "INSERT INTO noticias (titulo, descripcion, id_categoria, preview, imagen) VALUES (:titulo, :descripcion, :id_categoria, :preview, :imagen)";
 				
 			$stmt = $db->prepare($query);
 			
 			$stmt->execute([
+				':titulo'		=> $datos['titulo'],
 				':descripcion'		=> $datos['descripcion'],
 				':id_categoria'		=> $datos['id_categoria'],
 				':preview'			=> $datos['preview'],
@@ -164,7 +165,61 @@
 			]);
 			
 			if(!$stmt->rowCount()){
-				throw new Exception('Error al subir el mensaje.');
+				throw new Exception('Error al subir la noticia.');
+			}
+		}
+		
+		public function update($datos){
+			$db = DBConnection::getConeccion();
+			
+			$query = "UPDATE noticias SET titulo = :titulo, id_categoria = :id_categoria, preview = :preview, descripcion = :descripcion, imagen = :imagen WHERE id_noticia = $this->id_noticia";
+			
+			$stmt = $db->prepare($query);
+			
+			$stmt->execute([
+				':titulo'		=> $datos['titulo'],
+				':id_categoria'=> $datos['id_categoria'],
+				':preview'		=> $datos['preview'],
+				':descripcion'		=> $datos['descripcion'],
+				':imagen'		=> $datos['imagen']
+			]);
+			
+			if(!$stmt->rowCount()){
+				throw new Exception('No hiciste ningun cambio.');
+			}
+		}
+		
+		public function delete(){
+			$db = DBConnection::getConeccion();
+			
+			$query = "DELETE FROM noticias WHERE id_noticia = $this->id_noticia";
+			
+			$stmt = $db->prepare($query);
+			
+			$stmt->execute([]);
+			
+			$fila = $stmt->fetch(PDO::FETCH_ASSOC);
+			
+			if(!$stmt->rowCount()){
+				throw new Exception('Error al borrar la noticia.');
+			}
+		}
+		
+		public static function last(){
+			$db = DBConnection::getConeccion();
+			
+			$query = "SELECT * FROM noticias ORDER BY id_noticia DESC";
+				
+			$stmt = $db->prepare($query);
+				
+			$stmt->execute([]);
+			
+			$noticia = $stmt->fetch();
+			
+			if($noticia['id_noticia'] != null){
+				return new Noticia($noticia['id_noticia']);
+			}else{
+				throw new Exception('No hay noticias subidas.');
 			}
 		}
 	}

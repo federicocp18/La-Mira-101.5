@@ -10,13 +10,11 @@
 
 	Route::addRoute('GET', '/noticia/{id_noticia}', 'NoticiaController@getOne');
 
-	Route::addRoute('GET', '/panel', 'NoticiaController@getFive');
-
 	Route::addRoute('POST', '/noticia/crear', 'NoticiaController@doCreate');
 
-	Route::addRoute('PUT', '/noticia/{id_noticia}/editar', 'NoticiaController@doEdit');
+	Route::addRoute('POST', '/noticia/{id_noticia}/editar', 'NoticiaController@doEdit');
 
-	Route::addRoute('DELETE', '/noticia/{id_noticia}/borrar', 'NoticiaController@doDelete');
+	Route::addRoute('DELETE', '/noticia/{id_noticia}/eliminar', 'NoticiaController@doDelete');
 
 	/** AuthController */
 	Route::addRoute('POST', '/login', 'AuthController@doLogin');
@@ -24,3 +22,6 @@
 	Route::addRoute('POST', '/verificar', 'AuthController@verifyToken');
 
 	Route::addRoute('GET', '/logout', 'AuthController@doLogout');
+
+	/** AuthController */
+	Route::addRoute('GET', '/categorias', 'CategoriaController@getAll');

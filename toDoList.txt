@@ -1,15 +1,10 @@
 FEDERICO---------------------------
-
++ Cambiar menu agregar noticia
 
 JUAN CRUZ--------------------------
 + Validacion
 + Detectar cuando no esta accedido
 + Detectar cuando si esta accedido
 + Validar si esta accedido correctamente
-+ Listar las ultimas 5 noticias en el panel
-+ Listar las noticias correspondientes en su seccion en el panel
-+ Crear noticia
-+ Editar noticia
-+ Borrar noticia
 + Desloguearse
 + Error login

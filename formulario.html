@@ -46,7 +46,7 @@
 <form class="agregar" method="post" enctype="multipart/form-data" action="#">
 
 <span>Titulo</span>
-<input type="text" name="titulo" value="TITULO"/>
+<input type="text" name="titulo"/>
 
 <span>Imagen</span>
 <input type="file" name="imagen"/>
@@ -59,14 +59,7 @@
 <textarea name="descripcion" rows="10" cols="50"></textarea>
 </div>
 
-<select name="categoria">
-
-	<option value="Politica">Politica</option>
-	<option value="Deporte">Deporte</option>
-
-</select>
-
-<input type="hidden" name="id" value="id"/>
+<select id='categoria' name="id_categoria"></select>
 
 <input type="submit" value="aceptar" />
 
@@ -125,5 +118,7 @@
 
 
 <script type="text/javascript" src="mi_js.js"></script>
+<script src="js/url.js"></script>
+<script src="js/panel/editar.js"></script>
 </body>
 </html>

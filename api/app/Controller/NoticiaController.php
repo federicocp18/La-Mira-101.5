@@ -4,9 +4,11 @@
 	use Exception;
 	use Core\Route;
 	use Core\View;
+	use DB\DBConnection;
 	use Model\Categoria;
 	use Model\Noticia;
 	use Model\Usuario;
+	use PDO;
 
 	class NoticiaController{
 		/** Trae 3 noticias de cada categoria. **/
@@ -88,38 +90,14 @@
 			}
 		}
 
-		/** Trae 3 noticias de cada categoria. **/
-		public function getFive(){
-			try{
-				$noticias = Noticia::getAll();
-				$noticias = Noticia::limit($noticias, 5);
-				
-				View::render([
-					'status' => 1,
-					'datos' => [
-						'noticias' => $noticias,
-					],
-					'error' => 'Todo OK'
-				]);
-			}catch(Exception $excepcion){
-				View::render([
-					'status' => 0,
-					'error' => $excepcion->getMessage()
-				]);
-			}
-		}
-
-		/** Trae 3 noticias de cada categoria. **/
-		public function doCrear(){
-			$datos = file_get_contents('php://input');
-			$datos = json_decode($datos, true);
-
+		/** Crea una noticia nueva. **/
+		public function doCreate(){
 			// $reglas = Noticia::$reglas['crear'];
 			
 			try{
 				// $validator = new Validator($datos, $reglas);
 
-				if('' != $_FILES['imagen']['tmp_name']){
+				if(isset($_FILES['imagen']['tmp_name']) && '' != $_FILES['imagen']['tmp_name']){
 					$extension = pathinfo($_FILES['imagen']['name']);
 					$extension = $extension['extension'];
 					$erFoto = "/^(jpg|png|jpeg)$/i";
@@ -132,11 +110,11 @@
 						die();
 					}
 					
-					$noticia = Noticia::getLast();
-						
-					$imagen = "'$noticia->id_noticia.$extension'";
+					$db = DBConnection::getConeccion();
+					$numero = $db->query("SHOW TABLE STATUS LIKE 'noticias'")->fetch(PDO::FETCH_ASSOC)['Auto_increment'];
+					$imagen = "$numero.$extension";
 					
-					move_uploaded_file($_FILES['imagen']['tmp_name'], "../../../edificios/$idEdificio/$numero.$extension");
+					move_uploaded_file($_FILES['imagen']['tmp_name'], "../../img/noticias/$imagen");
 				}else{
 					View::render([
 						'status' => 0,
@@ -145,11 +123,103 @@
 					die();
 				}
 
-				Noticia::doCreate($datos);
+				$newData = [
+					'titulo' => $_POST['titulo'],
+					'descripcion' => $_POST['descripcion'],
+					'preview' => $_POST['preview'],
+					'id_categoria' => $_POST['id_categoria'],
+					'imagen' => $imagen
+				];
+
+				Noticia::create($newData);
 				
 				View::render([
 					'status' => 1,
 					'message' => 'Noticia creada exitosamente',
+					'error' => 'Todo OK'
+				]);
+			}catch(Exception $excepcion){
+				View::render([
+					'status' => 0,
+					'error' => $excepcion->getMessage()
+				]);
+			}
+		}
+
+		/** Edita una noticia. **/
+		public function doEdit(){
+			// $reglas = Noticia::$reglas['editar'];
+			
+			try{
+				$ruta = new Route();
+				$id_noticia = $ruta->getParams('id_noticia');
+				$noticia = new Noticia($id_noticia);
+
+				// $validator = new Validator($datos, $reglas);
+
+				if(isset($_FILES['imagen']['tmp_name']) && '' != $_FILES['imagen']['tmp_name']){
+					$extension = pathinfo($_FILES['imagen']['name']);
+					$extension = $extension['extension'];
+					$erFoto = "/^(jpg|png|jpeg)$/i";
+					$envio = preg_match_all($erFoto,$extension,$array);
+					if(!$envio){
+						View::render([
+							'status' => 0,
+							'error' => 'La imagen debe ser extension JPG/JPEG o PNG.'
+						]);
+						die();
+					}
+						
+					$numero = $noticia->id_noticia;
+					$imagen = "$numero.$extension";
+					
+					unlink("../../img/noticias/$noticia->imagen");
+					move_uploaded_file($_FILES['imagen']['tmp_name'], "../../img/noticias/$imagen");
+				}else{
+					$imagen = $noticia->imagen;
+				}
+
+				$newData = [
+					'titulo' => $_POST['titulo'],
+					'descripcion' => $_POST['descripcion'],
+					'preview' => $_POST['preview'],
+					'id_categoria' => $_POST['id_categoria'],
+					'imagen' => $imagen
+				];
+
+				$noticia->update($newData);
+				
+				View::render([
+					'status' => 1,
+					'message' => 'Noticia creada exitosamente',
+					'error' => 'Todo OK'
+				]);
+			}catch(Exception $excepcion){
+				View::render([
+					'status' => 0,
+					'error' => $excepcion->getMessage()
+				]);
+			}
+		}
+
+		/** Elimina una noticia. **/
+		public function doDelete(){
+			// $reglas = Noticia::$reglas['editar'];
+			
+			try{
+				$ruta = new Route();
+				$id_noticia = $ruta->getParams('id_noticia');
+				$noticia = new Noticia($id_noticia);
+
+				// $validator = new Validator($datos, $reglas);
+
+				unlink("../../img/noticias/$noticia->imagen");
+
+				$noticia->delete();
+				
+				View::render([
+					'status' => 1,
+					'message' => 'Noticia borrada exitosamente',
 					'error' => 'Todo OK'
 				]);
 			}catch(Exception $excepcion){

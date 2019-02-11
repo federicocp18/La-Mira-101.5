@@ -13,9 +13,6 @@
 	class AuthController{
 		/** Intenta loguear a un Usuario. **/
 		public function doLogin(){
-			$datos = file_get_contents('php://input');
-			$datos = json_decode($datos, true);
-			
 			// $reglas = Usuario::$reglas['login'];
 			
 			try{

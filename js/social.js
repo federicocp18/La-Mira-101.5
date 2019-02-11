@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', function(){
-    console.log(API);
+    
     let social = {
         contenido: document.querySelector('#social'),
         load: function(data){
