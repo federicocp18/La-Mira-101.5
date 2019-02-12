@@ -21,12 +21,12 @@
 		<figure id="logo">
 			<img src="img/logo.png" alt="logo" />
 		</figure>
-			<a href="politica.html">política</a>
-			<a href="economia.html">economía</a>
-			<a href="social.html">social</a>
-			<a href="deporte.html">deporte</a>
-			<a href="seguridad.html">seguridad</a>
-			<a href="comunitarios.html">comunitarios</a>
+			<a href="panel_politica.html">política</a>
+			<a href="panel_economia.html">economía</a>
+			<a href="panel_social.html">social</a>
+			<a href="panel_deporte.html">deporte</a>
+			<a href="panel_seguridad.html">seguridad</a>
+			<a href="panel_comunitarios.html">comunitarios</a>
 			<a id="sesion" href="#">salir</a>
 		</div>
 	</div>
@@ -48,7 +48,7 @@
 
 <span>Titulo</span>
 <input type="text" name="titulo"/>
-<small>Maximo de 98 caracteres</small>
+<small></small>
 
 <span>Imagen</span>
 <input type="file" name="imagen"/>
@@ -56,10 +56,11 @@
 <div>
 <span>Preview</span>
 <textarea name="preview" rows="10" cols="50"></textarea>
-<small>Maximo de 230 caracteres</small>
+<small></small>
 
 <span>Descripcion</span>
 <textarea name="descripcion" rows="10" cols="50"></textarea>
+<small></small>
 </div>
 
 <select id='categoria' name="id_categoria"></select>
@@ -124,6 +125,7 @@
 <script src="js/api.js"></script>
 <script src="js/route.js"></script>
 <script src="js/localstorage.js"></script>
+<script src="js/validation.js"></script>
 <script src="js/panel/editar.js"></script>
 </body>
 </html>

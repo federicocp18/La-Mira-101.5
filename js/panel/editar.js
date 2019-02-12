@@ -13,14 +13,59 @@ document.addEventListener('DOMContentLoaded', function(){
             document.querySelector('#formulario form textarea:last-of-type').innerHTML = noticia.descripcion;
         },
         enviar: async function(id_noticia){
-            let formData = new FormData(formulario.contenido);
-            let respuesta = await api.sendData('/noticia/' + id_noticia + '/editar', formData);
-            if(respuesta.status){
-                let categoria_seleccionada = document.querySelector('#categoria').value;
-                let categoria_nombre = categoria.obtener(categoria_seleccionada);
-                window.location.replace(route.url + '/panel_' + categoria_nombre + '.html');
+            let estatus = this.validar();
+            if(estatus){
+                let formData = new FormData(formulario.contenido);
+                let respuesta = await api.sendData('/noticia/' + id_noticia + '/editar', formData);
+                if(respuesta.status){
+                    let categoria_seleccionada = document.querySelector('#categoria').value;
+                    let categoria_nombre = categoria.obtener(categoria_seleccionada);
+                    window.location.replace(route.url + '/panel_' + categoria_nombre + '.html');
+                }else{
+                    console.log(respuesta.error);
+                }
+            }
+        },
+        validar : function(){
+            let titulo = document.querySelector('input[name=titulo]');
+            let preview = document.querySelector('textarea[name=preview]');
+            let descripcion = document.querySelector('textarea[name=descripcion]');
+
+            let enviar = true;
+            let respuesta = validation.required(titulo.value);
+            if(!respuesta.status){
+                enviar = false;
+                titulo.nextElementSibling.innerHTML = respuesta.message;
             }else{
-                console.log(respuesta.error);
+                respuesta = validation.max(titulo.value, 98);
+                if(!respuesta.status){
+                    enviar = false;
+                    titulo.nextElementSibling.innerHTML = respuesta.message;
+                }
+            }
+
+            respuesta = validation.required(preview.value);
+            if(!respuesta.status){
+                enviar = false;
+                preview.nextElementSibling.innerHTML = respuesta.message;
+            }else{
+                respuesta = validation.max(preview.value, 230);
+                if(!respuesta.status){
+                    enviar = false;
+                    preview.nextElementSibling.innerHTML = respuesta.message;
+                }
+            }
+
+            respuesta = validation.required(descripcion.value);
+            if(!respuesta.status){
+                enviar = false;
+                descripcion.nextElementSibling.innerHTML = respuesta.message;
+            }
+
+            if(enviar){
+                return true;
+            }else{
+                return false;
             }
         },
     };

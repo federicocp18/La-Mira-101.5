@@ -10,37 +10,13 @@ document.addEventListener('DOMContentLoaded', function(){
             });
         },
         enviar: async function(){
-            let estatus = acceder.validar();
-            if(estatus){
-                let formData = new FormData(acceder.contenido);
-                let respuesta = await api.sendData('/login', formData);
-                if(respuesta.status){
-                    localstorage.save('LaMiraToken', respuesta.token);
-                    window.location.replace(route.url + '/panel_politica.html');
-                }else{
-    
-                }
-            }
-        },
-        validar : function(){
-            let nombre = document.querySelector('input[type=text]');
-            let clave = document.querySelector('input[type=password]');
-
-            let enviar = true;
-            let respuesta = validation.required(nombre.value);
-            if(!respuesta.status){
-                enviar = false;
-            }
-
-            respuesta = validation.required(clave.value);
-            if(!respuesta.status){
-                enviar = false;
-            }
-
-            if(enviar){
-                return true;
+            let formData = new FormData(acceder.contenido);
+            let respuesta = await api.sendData('/login', formData);
+            if(respuesta.status){
+                localstorage.save('LaMiraToken', respuesta.token);
+                window.location.replace(route.url + '/panel_politica.html');
             }else{
-                return false;
+
             }
         },
     };
