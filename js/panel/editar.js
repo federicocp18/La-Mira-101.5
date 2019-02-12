@@ -67,15 +67,64 @@ document.addEventListener('DOMContentLoaded', function(){
         }
     };
 
+    let sesion = {
+        contenido: document.querySelector('#sesion'),
+        load: async function(data){
+            if(localstorage.load('LaMiraToken')){
+                let token = localstorage.load('LaMiraToken');
+                let formData = new FormData();
+                formData.append('token', token)
+                let respuesta = await sendData('/verificar', formData);
+                if(respuesta.status){
+                    this.show();
+                    this.contenido.addEventListener('click', function(evento){
+                        evento.preventDefault();
+
+                        sesion.salir();
+                    });
+                }else{
+                    localstorage.remove('LaMiraToken');
+                    this.hide();
+                }
+            }else{
+                this.hide();
+            }
+        },
+        hide: function(){
+            this.contenido.style.display = 'none';
+        },
+        show: function(){
+            this.contenido.style.display = 'inline-block';
+        },
+        salir: async function(){
+            localstorage.remove('LaMiraToken');
+            window.location.replace(URL + '/acceder.html');
+        },
+    };
+
     /** Carga la seccion deporte entera. */
     async function load(){
-        respuesta = await getData('/noticia/' + findGetParameter('noticia'));
-        if(respuesta.status){
-            formulario.load(respuesta.datos.noticia);
-        }
-        respuesta2 = await getData('/categorias');
-        if(respuesta2.status){
-            categoria.load(respuesta2.datos.categorias, respuesta.datos.noticia);
+        if(localstorage.load('LaMiraToken')){
+            let token = localstorage.load('LaMiraToken');
+            let formData = new FormData();
+            formData.append('token', token)
+            let respuesta = await sendData('/verificar', formData);
+            if(respuesta.status){
+                sesion.load();
+                respuesta = await getData('/noticia/' + findGetParameter('noticia'));
+                if(respuesta.status){
+                    formulario.load(respuesta.datos.noticia);
+                }
+                respuesta2 = await getData('/categorias');
+                if(respuesta2.status){
+                    categoria.load(respuesta2.datos.categorias, respuesta.datos.noticia);
+                }
+            }else{
+                localstorage.remove('LaMiraToken');
+                window.location.replace(URL + '/acceder.html');
+            }
+        }else{
+            window.location.replace(URL + '/acceder.html');
         }
     }
 

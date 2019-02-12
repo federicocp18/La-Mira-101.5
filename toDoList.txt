@@ -3,8 +3,4 @@ FEDERICO---------------------------
 
 JUAN CRUZ--------------------------
 + Validacion
-+ Detectar cuando no esta accedido
-+ Detectar cuando si esta accedido
-+ Validar si esta accedido correctamente
-+ Desloguearse
 + Error login

@@ -43,12 +43,61 @@ document.addEventListener('DOMContentLoaded', function(){
         }
     };
 
+    let sesion = {
+        contenido: document.querySelector('#sesion'),
+        load: async function(data){
+            if(localstorage.load('LaMiraToken')){
+                let token = localstorage.load('LaMiraToken');
+                let formData = new FormData();
+                formData.append('token', token)
+                let respuesta = await sendData('/verificar', formData);
+                if(respuesta.status){
+                    this.show();
+                    this.contenido.addEventListener('click', function(evento){
+                        evento.preventDefault();
+
+                        sesion.salir();
+                    });
+                }else{
+                    localstorage.remove('LaMiraToken');
+                    this.hide();
+                }
+            }else{
+                this.hide();
+            }
+        },
+        hide: function(){
+            this.contenido.style.display = 'none';
+        },
+        show: function(){
+            this.contenido.style.display = 'inline-block';
+        },
+        salir: async function(){
+            localstorage.remove('LaMiraToken');
+            window.location.replace(URL + '/acceder.html');
+        },
+    };
+
     /** Carga la seccion deporte entera. */
     async function load(){
-        formulario.load();
-        respuesta = await getData('/categorias');
-        if(respuesta.status){
-            categoria.load(respuesta.datos.categorias);
+        if(localstorage.load('LaMiraToken')){
+            let token = localstorage.load('LaMiraToken');
+            let formData = new FormData();
+            formData.append('token', token)
+            let respuesta = await sendData('/verificar', formData);
+            if(respuesta.status){
+                sesion.load();
+                formulario.load();
+                respuesta = await getData('/categorias');
+                if(respuesta.status){
+                    categoria.load(respuesta.datos.categorias);
+                }
+            }else{
+                localstorage.remove('LaMiraToken');
+                window.location.replace(URL + '/acceder.html');
+            }
+        }else{
+            window.location.replace(URL + '/acceder.html');
         }
     }
 

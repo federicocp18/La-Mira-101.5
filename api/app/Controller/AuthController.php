@@ -49,15 +49,16 @@
 			}
 		}
 
-		/** Intenta desloguear a un Usuario. **/
-		public function doLogout(){
+		/** Verifica que el usuario logueado sea el correcto. **/
+		public function verifyToken(){
 			try{
-				Auth::exit();
+				$token = new Token();
+				$id_usuario = $token->verifica(strval($_POST['token']));
+				$usuario = new Usuario($id_usuario);
 				
 				View::render([
 					'status'	=> 1,
-					'message'	=> 'Se ha deslogueado correctamente.',
-					'token'		=> strval($tokenGenerado)
+					'message'	=> 'Usuario correcto.'
 				]);
 			}catch(Exception $excepcion){
 				View::render([

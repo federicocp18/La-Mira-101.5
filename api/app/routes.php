@@ -21,7 +21,5 @@
 
 	Route::addRoute('POST', '/verificar', 'AuthController@verifyToken');
 
-	Route::addRoute('GET', '/logout', 'AuthController@doLogout');
-
 	/** AuthController */
 	Route::addRoute('GET', '/categorias', 'CategoriaController@getAll');

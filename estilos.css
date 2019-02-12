@@ -63,6 +63,12 @@ nav a{
 	transition: 0.2s;
 	-webkit-transition: 0.2s;
 }
+nav #sesion{
+	color: #03234c;
+}nav #sesion:hover{
+	color: white;
+	background-color: #9ac63d;
+}
 
 #portada{
 	width: 100%;

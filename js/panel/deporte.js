@@ -66,13 +66,62 @@ document.addEventListener('DOMContentLoaded', function(){
         },
     };
 
+    let sesion = {
+        contenido: document.querySelector('#sesion'),
+        load: async function(data){
+            if(localstorage.load('LaMiraToken')){
+                let token = localstorage.load('LaMiraToken');
+                let formData = new FormData();
+                formData.append('token', token)
+                let respuesta = await sendData('/verificar', formData);
+                if(respuesta.status){
+                    this.show();
+                    this.contenido.addEventListener('click', function(evento){
+                        evento.preventDefault();
+
+                        sesion.salir();
+                    });
+                }else{
+                    localstorage.remove('LaMiraToken');
+                    this.hide();
+                }
+            }else{
+                this.hide();
+            }
+        },
+        hide: function(){
+            this.contenido.style.display = 'none';
+        },
+        show: function(){
+            this.contenido.style.display = 'inline-block';
+        },
+        salir: async function(){
+            localstorage.remove('LaMiraToken');
+            window.location.replace(URL + '/acceder.html');
+        },
+    };
+
     /** Carga la seccion deporte entera. */
     async function load(){
-        respuesta = await getData('/noticias/4');
-        if(respuesta.status){
-            deporte.load(respuesta.datos.noticias);
+        if(localstorage.load('LaMiraToken')){
+            let token = localstorage.load('LaMiraToken');
+            let formData = new FormData();
+            formData.append('token', token)
+            let respuesta = await sendData('/verificar', formData);
+            if(respuesta.status){
+                sesion.load();
+                respuesta = await getData('/noticias/4');
+                if(respuesta.status){
+                    deporte.load(respuesta.datos.noticias);
+                }
+                botones.load();
+            }else{
+                localstorage.remove('LaMiraToken');
+                window.location.replace(URL + '/acceder.html');
+            }
+        }else{
+            window.location.replace(URL + '/acceder.html');
         }
-        botones.load();
     }
 
     load();
@@ -97,11 +146,20 @@ document.addEventListener('DOMContentLoaded', function(){
      * @param {string} ruta 
      * @param {FormData} BODY 
      */
-    async function sendData(ruta){
-        return await fetch(API + ruta,{
-            method: 'DELETE',
-        }).then(respuesta => {
-            return respuesta.json();
-        }).catch();
+    async function sendData(ruta, BODY = null){
+        if(BODY !== null){
+            return await fetch(API + ruta,{
+                method: 'POST',
+                body: BODY,
+            }).then(respuesta => {
+                return respuesta.json();
+            }).catch();
+        }else{
+            return await fetch(API + ruta,{
+                method: 'DELETE',
+            }).then(respuesta => {
+                return respuesta.json();
+            }).catch();
+        }
     }
 });

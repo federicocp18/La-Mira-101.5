@@ -43,10 +43,6 @@
 			$this->usuario	= new Usuario($fila['id_usuario']);
 		}
 		
-		public function exit(){
-			$this->usuario = null;
-		}
-		
 		public function id(){
 			return $this->usuario->id_usuario;
 		}

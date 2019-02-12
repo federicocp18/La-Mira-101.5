@@ -23,7 +23,20 @@ document.addEventListener('DOMContentLoaded', function(){
 
     /** Carga la seccion ver entera. */
     async function load(){
-        acceder.load();
+        if(localstorage.load('LaMiraToken')){
+            let token = localstorage.load('LaMiraToken');
+            let formData = new FormData();
+            formData.append('token', token)
+            let respuesta = await sendData('/verificar', formData);
+            if(respuesta.status){
+                window.location.replace(URL + '/panel_politica.html');
+            }else{
+                localstorage.remove('LaMiraToken');
+                acceder.load();
+            }
+        }else{
+            acceder.load();
+        }
     }
 
     load();
