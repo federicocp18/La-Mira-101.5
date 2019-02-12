@@ -186,7 +186,7 @@ document.addEventListener('DOMContentLoaded', function(){
                 let token = localstorage.load('LaMiraToken');
                 let formData = new FormData();
                 formData.append('token', token)
-                let respuesta = await sendData('/verificar', formData);
+                let respuesta = await api.sendData('/verificar', formData);
                 if(respuesta.status){
                     this.show();
                     this.contenido.addEventListener('click', function(evento){
@@ -216,7 +216,7 @@ document.addEventListener('DOMContentLoaded', function(){
 
     /** Carga la home entera. */
     async function load(){
-        respuesta = await getData('/home');
+        respuesta = await api.getData('/home');
         if(respuesta.status){
             sesion.load();
             let politicas = distinguir(respuesta.datos, '1');
@@ -251,33 +251,4 @@ document.addEventListener('DOMContentLoaded', function(){
     }
 
     load();
-
-    /**
-     * Obtiene datos de la API.
-     * 
-     * @param {string} ruta 
-     */
-    function getData(ruta){
-        return fetch(API + ruta)
-            .then(respuesta => {
-                return respuesta.json();
-            }).catch(error => {
-                console.log(error);
-            })
-    }
-
-    /**
-     * Envia datos a la API.
-     * 
-     * @param {string} ruta 
-     * @param {FormData} BODY 
-     */
-    async function sendData(ruta, BODY){
-        return await fetch(API + ruta,{
-            method: 'POST',
-            body: BODY,
-        }).then(respuesta => {
-            return respuesta.json();
-        }).catch();
-    }
 });

@@ -1,4 +1,4 @@
-let localstorage = {
+var localstorage = {
     load: function(name){
         let datos;
         if(localStorage.getItem(name)){

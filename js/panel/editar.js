@@ -1,22 +1,4 @@
 document.addEventListener('DOMContentLoaded', function(){
-    /**
-     * Obtiene un parametro GET de la ruta
-     * 
-     * @param {string} parameterName 
-     */
-    function findGetParameter(parameterName) {
-        var result = null,
-            tmp = [];
-        location.search
-            .substr(1)
-            .split("&")
-            .forEach(function (item) {
-              tmp = item.split("=");
-              if (tmp[0] === parameterName) result = decodeURIComponent(tmp[1]);
-            });
-        return result;
-    }
-
     let formulario = {
         contenido: document.querySelector('#formulario form'),
         boton: document.querySelector('#formulario form input[type=submit]'),
@@ -32,11 +14,11 @@ document.addEventListener('DOMContentLoaded', function(){
         },
         enviar: async function(id_noticia){
             let formData = new FormData(formulario.contenido);
-            let respuesta = await sendData('/noticia/' + id_noticia + '/editar', formData);
+            let respuesta = await api.sendData('/noticia/' + id_noticia + '/editar', formData);
             if(respuesta.status){
                 let categoria_seleccionada = document.querySelector('#categoria').value;
                 let categoria_nombre = categoria.obtener(categoria_seleccionada);
-                window.location.replace(URL + '/panel_' + categoria_nombre + '.html');
+                window.location.replace(route.url + '/panel_' + categoria_nombre + '.html');
             }else{
                 console.log(respuesta.error);
             }
@@ -74,7 +56,7 @@ document.addEventListener('DOMContentLoaded', function(){
                 let token = localstorage.load('LaMiraToken');
                 let formData = new FormData();
                 formData.append('token', token)
-                let respuesta = await sendData('/verificar', formData);
+                let respuesta = await api.sendData('/verificar', formData);
                 if(respuesta.status){
                     this.show();
                     this.contenido.addEventListener('click', function(evento){
@@ -98,7 +80,7 @@ document.addEventListener('DOMContentLoaded', function(){
         },
         salir: async function(){
             localstorage.remove('LaMiraToken');
-            window.location.replace(URL + '/acceder.html');
+            window.location.replace(route.url + '/acceder.html');
         },
     };
 
@@ -108,54 +90,25 @@ document.addEventListener('DOMContentLoaded', function(){
             let token = localstorage.load('LaMiraToken');
             let formData = new FormData();
             formData.append('token', token)
-            let respuesta = await sendData('/verificar', formData);
+            let respuesta = await api.sendData('/verificar', formData);
             if(respuesta.status){
                 sesion.load();
-                respuesta = await getData('/noticia/' + findGetParameter('noticia'));
+                respuesta = await api.getData('/noticia/' + route.findGetParameter('noticia'));
                 if(respuesta.status){
                     formulario.load(respuesta.datos.noticia);
                 }
-                respuesta2 = await getData('/categorias');
+                respuesta2 = await api.getData('/categorias');
                 if(respuesta2.status){
                     categoria.load(respuesta2.datos.categorias, respuesta.datos.noticia);
                 }
             }else{
                 localstorage.remove('LaMiraToken');
-                window.location.replace(URL + '/acceder.html');
+                window.location.replace(route.url + '/acceder.html');
             }
         }else{
-            window.location.replace(URL + '/acceder.html');
+            window.location.replace(route.url + '/acceder.html');
         }
     }
 
     load();
-
-    /**
-     * Obtiene datos de la API.
-     * 
-     * @param {string} ruta 
-     */
-    function getData(ruta){
-        return fetch(API + ruta)
-            .then(respuesta => {
-                return respuesta.json();
-            }).catch(error => {
-                console.log(error);
-            })
-    }
-
-    /**
-     * Envia datos a la API.
-     * 
-     * @param {string} ruta 
-     * @param {FormData} BODY 
-     */
-    async function sendData(ruta, BODY){
-        return await fetch(API + ruta,{
-            method: 'POST',
-            body: BODY,
-        }).then(respuesta => {
-            return respuesta.json();
-        }).catch();
-    }
 });

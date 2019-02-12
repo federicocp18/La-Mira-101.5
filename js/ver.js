@@ -1,22 +1,4 @@
 document.addEventListener('DOMContentLoaded', function(){
-    /**
-     * Obtiene un parametro GET de la ruta
-     * 
-     * @param {string} parameterName 
-     */
-    function findGetParameter(parameterName) {
-        var result = null,
-            tmp = [];
-        location.search
-            .substr(1)
-            .split("&")
-            .forEach(function (item) {
-              tmp = item.split("=");
-              if (tmp[0] === parameterName) result = decodeURIComponent(tmp[1]);
-            });
-        return result;
-    }
-    
     let ver = {
         contenido: document.querySelector('#ver_contenido'),
         load: function(data){
@@ -48,7 +30,7 @@ document.addEventListener('DOMContentLoaded', function(){
                 let token = localstorage.load('LaMiraToken');
                 let formData = new FormData();
                 formData.append('token', token)
-                let respuesta = await sendData('/verificar', formData);
+                let respuesta = await api.sendData('/verificar', formData);
                 if(respuesta.status){
                     this.show();
                     this.contenido.addEventListener('click', function(evento){
@@ -79,25 +61,11 @@ document.addEventListener('DOMContentLoaded', function(){
     /** Carga la seccion ver entera. */
     async function load(){
         sesion.load();
-        respuesta = await getData('/noticia/' + findGetParameter('noticia'));
+        respuesta = await api.getData('/noticia/' + route.findGetParameter('noticia'));
         if(respuesta.status){
             ver.load(respuesta.datos.noticia);
         }
     }
 
     load();
-
-    /**
-     * Obtiene datos de la API.
-     * 
-     * @param {string} ruta 
-     */
-    function getData(ruta){
-        return fetch(API + ruta)
-            .then(respuesta => {
-                return respuesta.json();
-            }).catch(error => {
-                console.log(error);
-            })
-    }
 });

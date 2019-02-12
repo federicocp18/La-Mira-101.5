@@ -11,11 +11,11 @@ document.addEventListener('DOMContentLoaded', function(){
         },
         enviar: async function(){
             let formData = new FormData(formulario.contenido);
-            let respuesta = await sendData('/noticia/crear', formData);
+            let respuesta = await api.sendData('/noticia/crear', formData);
             if(respuesta.status){
                 let categoria_seleccionada = document.querySelector('#categoria').value;
                 let categoria_nombre = categoria.obtener(categoria_seleccionada);
-                window.location.replace(URL + '/panel_' + categoria_nombre + '.html');
+                window.location.replace(route.url + '/panel_' + categoria_nombre + '.html');
             }else{
                 console.log(respuesta.error);
             }
@@ -50,7 +50,7 @@ document.addEventListener('DOMContentLoaded', function(){
                 let token = localstorage.load('LaMiraToken');
                 let formData = new FormData();
                 formData.append('token', token)
-                let respuesta = await sendData('/verificar', formData);
+                let respuesta = await api.sendData('/verificar', formData);
                 if(respuesta.status){
                     this.show();
                     this.contenido.addEventListener('click', function(evento){
@@ -74,7 +74,7 @@ document.addEventListener('DOMContentLoaded', function(){
         },
         salir: async function(){
             localstorage.remove('LaMiraToken');
-            window.location.replace(URL + '/acceder.html');
+            window.location.replace(route.url + '/acceder.html');
         },
     };
 
@@ -84,51 +84,22 @@ document.addEventListener('DOMContentLoaded', function(){
             let token = localstorage.load('LaMiraToken');
             let formData = new FormData();
             formData.append('token', token)
-            let respuesta = await sendData('/verificar', formData);
+            let respuesta = await api.sendData('/verificar', formData);
             if(respuesta.status){
                 sesion.load();
                 formulario.load();
-                respuesta = await getData('/categorias');
+                respuesta = await api.getData('/categorias');
                 if(respuesta.status){
                     categoria.load(respuesta.datos.categorias);
                 }
             }else{
                 localstorage.remove('LaMiraToken');
-                window.location.replace(URL + '/acceder.html');
+                window.location.replace(route.url + '/acceder.html');
             }
         }else{
-            window.location.replace(URL + '/acceder.html');
+            window.location.replace(route.url + '/acceder.html');
         }
     }
 
     load();
-
-    /**
-     * Obtiene datos de la API.
-     * 
-     * @param {string} ruta 
-     */
-    function getData(ruta){
-        return fetch(API + ruta)
-            .then(respuesta => {
-                return respuesta.json();
-            }).catch(error => {
-                console.log(error);
-            })
-    }
-
-    /**
-     * Envia datos a la API.
-     * 
-     * @param {string} ruta 
-     * @param {FormData} BODY 
-     */
-    async function sendData(ruta, BODY){
-        return await fetch(API + ruta,{
-            method: 'POST',
-            body: BODY,
-        }).then(respuesta => {
-            return respuesta.json();
-        }).catch();
-    }
 });

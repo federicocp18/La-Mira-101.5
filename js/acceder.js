@@ -10,13 +10,37 @@ document.addEventListener('DOMContentLoaded', function(){
             });
         },
         enviar: async function(){
-            let formData = new FormData(acceder.contenido);
-            let respuesta = await sendData('/login', formData);
-            if(respuesta.status){
-                localstorage.save('LaMiraToken', respuesta.token);
-                window.location.replace(URL + '/panel_politica.html');
-            }else{
+            let estatus = acceder.validar();
+            if(estatus){
+                let formData = new FormData(acceder.contenido);
+                let respuesta = await api.sendData('/login', formData);
+                if(respuesta.status){
+                    localstorage.save('LaMiraToken', respuesta.token);
+                    window.location.replace(route.url + '/panel_politica.html');
+                }else{
+    
+                }
+            }
+        },
+        validar : function(){
+            let nombre = document.querySelector('input[type=text]');
+            let clave = document.querySelector('input[type=password]');
 
+            let enviar = true;
+            let respuesta = validation.required(nombre.value);
+            if(!respuesta.status){
+                enviar = false;
+            }
+
+            respuesta = validation.required(clave.value);
+            if(!respuesta.status){
+                enviar = false;
+            }
+
+            if(enviar){
+                return true;
+            }else{
+                return false;
             }
         },
     };
@@ -27,9 +51,9 @@ document.addEventListener('DOMContentLoaded', function(){
             let token = localstorage.load('LaMiraToken');
             let formData = new FormData();
             formData.append('token', token)
-            let respuesta = await sendData('/verificar', formData);
+            let respuesta = await api.sendData('/verificar', formData);
             if(respuesta.status){
-                window.location.replace(URL + '/panel_politica.html');
+                window.location.replace(route.url + '/panel_politica.html');
             }else{
                 localstorage.remove('LaMiraToken');
                 acceder.load();
@@ -40,19 +64,4 @@ document.addEventListener('DOMContentLoaded', function(){
     }
 
     load();
-
-    /**
-     * Envia datos a la API.
-     * 
-     * @param {string} ruta 
-     * @param {FormData} BODY 
-     */
-    async function sendData(ruta, BODY){
-        return await fetch(API + ruta,{
-            method: 'POST',
-            body: BODY,
-        }).then(respuesta => {
-            return respuesta.json();
-        }).catch();
-    }
 });
