@@ -3,6 +3,7 @@ var route = {
     url: '/La-Mira-101.5/public',
     api: '/La-Mira-101.5/api/public',
     load: function(){
+        console.log(this.origin);
         if(this.origen != "http://localhost"){
             this.url = this.origen + '';
             this.api = this.origen + '';
