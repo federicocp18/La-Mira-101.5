@@ -24,20 +24,20 @@
 				$db_host = "localhost";
 				
 				try{
-					/** LOCAL */
-					$db_user = "root";
-					$db_pass = "";
-					$db_base = "lamira";
-				
-					$db_dsn = "mysql:host=$db_host;dbname=$db_base;charset=utf8";
-					DBConnection::$db = new PDO($db_dsn, $db_user, $db_pass);
-				}
-				catch(PDOException $ex){
 					/** ONLINE */
 					$db_user = "u258049469_rlm";
 					$db_pass = "lamirasql2019";
 					$db_base = "u258049469_rlm";
 
+					$db_dsn = "mysql:host=$db_host;dbname=$db_base;charset=utf8";
+					DBConnection::$db = new PDO($db_dsn, $db_user, $db_pass);
+				}
+				catch(PDOException $ex){
+					/** LOCAL */
+					$db_user = "root";
+					$db_pass = "";
+					$db_base = "lamira";
+				
 					$db_dsn = "mysql:host=$db_host;dbname=$db_base;charset=utf8";
 					DBConnection::$db = new PDO($db_dsn, $db_user, $db_pass);
 				}
