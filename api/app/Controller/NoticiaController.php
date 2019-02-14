@@ -32,7 +32,7 @@
 					'datos' => [
 						'noticias' => $noticias,
 					],
-					'error' => 'Todo OK'
+					'error' => $_SERVER['HTTP_HOST']
 				]);
 			}catch(Exception $excepcion){
 				View::render([
