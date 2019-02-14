@@ -32,7 +32,7 @@
 					'datos' => [
 						'noticias' => $noticias,
 					],
-					'error' => $_SERVER['HTTP_HOST']
+					'error' => $_SERVER['HTTP_HOST'] == 'radiolamira.com'
 				]);
 			}catch(Exception $excepcion){
 				View::render([
