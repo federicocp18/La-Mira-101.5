@@ -5,7 +5,7 @@ var route = {
     load: function(){
         if(this.origen != "http://localhost"){
             this.url = this.origen + '';
-            this.api = this.origen + '../';
+            this.api = this.origen + '/..';
             console.log(this.api);
         }
     },
