@@ -3,11 +3,10 @@ var route = {
     url: '/La-Mira-101.5/public',
     api: '/La-Mira-101.5/api/public',
     load: function(){
-        if(this.origen != "http://localhost"){
-            this.url = this.origen + '';
-            this.api = this.origen + '/..';
-            console.log(this.api);
-        }
+        // if(this.origen != "http://localhost"){
+        //     this.url = this.origen + '';
+        //     this.api = this.origen + '/..';
+        // }
     },
     findGetParameter: function(parameterName){
         var result = null,
