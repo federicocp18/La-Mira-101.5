@@ -1,5 +1,6 @@
 var api = {
     getData: function(ruta){
+        console.log(route.api);
         return fetch(route.api + ruta)
             .then(respuesta => {
                 return respuesta.json();
