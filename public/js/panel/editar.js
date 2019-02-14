@@ -20,7 +20,7 @@ document.addEventListener('DOMContentLoaded', function(){
                 if(respuesta.status){
                     let categoria_seleccionada = document.querySelector('#categoria').value;
                     let categoria_nombre = categoria.obtener(categoria_seleccionada);
-                    window.location.replace(route.url + '/panel_' + categoria_nombre + '.html');
+                    window.location.replace(route.url + '/panel_' + categoria_nombre.toLowerCase() + '.html');
                 }else{
                     console.log(respuesta.error);
                 }
