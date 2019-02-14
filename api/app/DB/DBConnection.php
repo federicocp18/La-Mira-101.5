@@ -24,14 +24,14 @@
 				$db_host = "localhost";
 				
 				/** ONLINE */
-				// $db_user = "id3814125_juancruz";
-				// $db_pass = "Juancu12";
-				// $db_base = "id3814125_tb";
+				$db_user = "u258049469_rlm";
+				$db_pass = "lamirasql2019";
+				$db_base = "u258049469_rlm";
 
 				/** LOCAL */
-				$db_user = "root";
-				$db_pass = "";
-				$db_base = "lamira";
+				// $db_user = "root";
+				// $db_pass = "";
+				// $db_base = "lamira";
 				
 				$db_dsn = "mysql:host=$db_host;dbname=$db_base;charset=utf8";
 				DBConnection::$db = new PDO($db_dsn, $db_user, $db_pass);
