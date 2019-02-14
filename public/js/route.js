@@ -1,6 +1,6 @@
 var route = {
     origen: location.origin,
-    url: '/La-Mira-101.5',
+    url: '/La-Mira-101.5/public',
     api: '/La-Mira-101.5/api/public',
     load: function(){
         if(this.origen != "http://localhost"){

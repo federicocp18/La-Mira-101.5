@@ -114,7 +114,7 @@
 					$numero = $db->query("SHOW TABLE STATUS LIKE 'noticias'")->fetch(PDO::FETCH_ASSOC)['Auto_increment'];
 					$imagen = "$numero.$extension";
 					
-					move_uploaded_file($_FILES['imagen']['tmp_name'], "../../img/noticias/$imagen");
+					move_uploaded_file($_FILES['imagen']['tmp_name'], "../../public/img/noticias/$imagen");
 				}else{
 					View::render([
 						'status' => 0,
@@ -173,8 +173,8 @@
 					$numero = $noticia->id_noticia;
 					$imagen = "$numero.$extension";
 					
-					unlink("../../img/noticias/$noticia->imagen");
-					move_uploaded_file($_FILES['imagen']['tmp_name'], "../../img/noticias/$imagen");
+					unlink("../../public/img/noticias/$noticia->imagen");
+					move_uploaded_file($_FILES['imagen']['tmp_name'], "../../public/img/noticias/$imagen");
 				}else{
 					$imagen = $noticia->imagen;
 				}
@@ -213,7 +213,7 @@
 
 				// $validator = new Validator($datos, $reglas);
 
-				unlink("../../img/noticias/$noticia->imagen");
+				unlink("../../public/img/noticias/$noticia->imagen");
 
 				$noticia->delete();
 				

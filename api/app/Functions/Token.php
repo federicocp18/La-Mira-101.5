@@ -1,6 +1,7 @@
 <?php
 	namespace Functions;
 
+	use Exception;
 	use Lcobucci\JWT\Builder;
 	use Lcobucci\JWT\Parser;
 	use Lcobucci\JWT\ValidationData;
