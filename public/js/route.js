@@ -7,6 +7,10 @@ var route = {
         if(this.origen != "http://localhost"){
             this.url = this.origen + '';
             this.api = this.origen + '';
+        }else{
+            this.url = this.origen + '';
+            this.api = this.origen + '../';
+            console.log(this.api);
         }
     },
     findGetParameter: function(parameterName){
