@@ -11,10 +11,10 @@ document.addEventListener('DOMContentLoaded', function(){
         },
         enviar: async function(){
             let formData = new FormData(acceder.contenido);
-            let respuesta = await sendData('/login', formData);
+            let respuesta = await api.sendData('/login', formData);
             if(respuesta.status){
                 localstorage.save('LaMiraToken', respuesta.token);
-                window.location.replace(URL + '/panel_politica.html');
+                window.location.replace(route.url + '/panel_politica.html');
             }else{
 
             }
@@ -27,9 +27,9 @@ document.addEventListener('DOMContentLoaded', function(){
             let token = localstorage.load('LaMiraToken');
             let formData = new FormData();
             formData.append('token', token)
-            let respuesta = await sendData('/verificar', formData);
+            let respuesta = await api.sendData('/verificar', formData);
             if(respuesta.status){
-                window.location.replace(URL + '/panel_politica.html');
+                window.location.replace(route.url + '/panel_politica.html');
             }else{
                 localstorage.remove('LaMiraToken');
                 acceder.load();
@@ -40,19 +40,4 @@ document.addEventListener('DOMContentLoaded', function(){
     }
 
     load();
-
-    /**
-     * Envia datos a la API.
-     * 
-     * @param {string} ruta 
-     * @param {FormData} BODY 
-     */
-    async function sendData(ruta, BODY){
-        return await fetch(API + ruta,{
-            method: 'POST',
-            body: BODY,
-        }).then(respuesta => {
-            return respuesta.json();
-        }).catch();
-    }
 });

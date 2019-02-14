@@ -1,22 +1,4 @@
 document.addEventListener('DOMContentLoaded', function(){
-    /**
-     * Obtiene un parametro GET de la ruta
-     * 
-     * @param {string} parameterName 
-     */
-    function findGetParameter(parameterName) {
-        var result = null,
-            tmp = [];
-        location.search
-            .substr(1)
-            .split("&")
-            .forEach(function (item) {
-              tmp = item.split("=");
-              if (tmp[0] === parameterName) result = decodeURIComponent(tmp[1]);
-            });
-        return result;
-    }
-
     let formulario = {
         contenido: document.querySelector('#formulario form'),
         boton: document.querySelector('#formulario form input[type=submit]'),
@@ -31,14 +13,59 @@ document.addEventListener('DOMContentLoaded', function(){
             document.querySelector('#formulario form textarea:last-of-type').innerHTML = noticia.descripcion;
         },
         enviar: async function(id_noticia){
-            let formData = new FormData(formulario.contenido);
-            let respuesta = await sendData('/noticia/' + id_noticia + '/editar', formData);
-            if(respuesta.status){
-                let categoria_seleccionada = document.querySelector('#categoria').value;
-                let categoria_nombre = categoria.obtener(categoria_seleccionada);
-                window.location.replace(URL + '/panel_' + categoria_nombre + '.html');
+            let estatus = this.validar();
+            if(estatus){
+                let formData = new FormData(formulario.contenido);
+                let respuesta = await api.sendData('/noticia/' + id_noticia + '/editar', formData);
+                if(respuesta.status){
+                    let categoria_seleccionada = document.querySelector('#categoria').value;
+                    let categoria_nombre = categoria.obtener(categoria_seleccionada);
+                    window.location.replace(route.url + '/panel_' + categoria_nombre + '.html');
+                }else{
+                    console.log(respuesta.error);
+                }
+            }
+        },
+        validar : function(){
+            let titulo = document.querySelector('input[name=titulo]');
+            let preview = document.querySelector('textarea[name=preview]');
+            let descripcion = document.querySelector('textarea[name=descripcion]');
+
+            let enviar = true;
+            let respuesta = validation.required(titulo.value);
+            if(!respuesta.status){
+                enviar = false;
+                titulo.nextElementSibling.innerHTML = respuesta.message;
             }else{
-                console.log(respuesta.error);
+                respuesta = validation.max(titulo.value, 98);
+                if(!respuesta.status){
+                    enviar = false;
+                    titulo.nextElementSibling.innerHTML = respuesta.message;
+                }
+            }
+
+            respuesta = validation.required(preview.value);
+            if(!respuesta.status){
+                enviar = false;
+                preview.nextElementSibling.innerHTML = respuesta.message;
+            }else{
+                respuesta = validation.max(preview.value, 230);
+                if(!respuesta.status){
+                    enviar = false;
+                    preview.nextElementSibling.innerHTML = respuesta.message;
+                }
+            }
+
+            respuesta = validation.required(descripcion.value);
+            if(!respuesta.status){
+                enviar = false;
+                descripcion.nextElementSibling.innerHTML = respuesta.message;
+            }
+
+            if(enviar){
+                return true;
+            }else{
+                return false;
             }
         },
     };
@@ -74,7 +101,7 @@ document.addEventListener('DOMContentLoaded', function(){
                 let token = localstorage.load('LaMiraToken');
                 let formData = new FormData();
                 formData.append('token', token)
-                let respuesta = await sendData('/verificar', formData);
+                let respuesta = await api.sendData('/verificar', formData);
                 if(respuesta.status){
                     this.show();
                     this.contenido.addEventListener('click', function(evento){
@@ -98,7 +125,7 @@ document.addEventListener('DOMContentLoaded', function(){
         },
         salir: async function(){
             localstorage.remove('LaMiraToken');
-            window.location.replace(URL + '/acceder.html');
+            window.location.replace(route.url + '/acceder.html');
         },
     };
 
@@ -108,54 +135,25 @@ document.addEventListener('DOMContentLoaded', function(){
             let token = localstorage.load('LaMiraToken');
             let formData = new FormData();
             formData.append('token', token)
-            let respuesta = await sendData('/verificar', formData);
+            let respuesta = await api.sendData('/verificar', formData);
             if(respuesta.status){
                 sesion.load();
-                respuesta = await getData('/noticia/' + findGetParameter('noticia'));
+                respuesta = await api.getData('/noticia/' + route.findGetParameter('noticia'));
                 if(respuesta.status){
                     formulario.load(respuesta.datos.noticia);
                 }
-                respuesta2 = await getData('/categorias');
+                respuesta2 = await api.getData('/categorias');
                 if(respuesta2.status){
                     categoria.load(respuesta2.datos.categorias, respuesta.datos.noticia);
                 }
             }else{
                 localstorage.remove('LaMiraToken');
-                window.location.replace(URL + '/acceder.html');
+                window.location.replace(route.url + '/acceder.html');
             }
         }else{
-            window.location.replace(URL + '/acceder.html');
+            window.location.replace(route.url + '/acceder.html');
         }
     }
 
     load();
-
-    /**
-     * Obtiene datos de la API.
-     * 
-     * @param {string} ruta 
-     */
-    function getData(ruta){
-        return fetch(API + ruta)
-            .then(respuesta => {
-                return respuesta.json();
-            }).catch(error => {
-                console.log(error);
-            })
-    }
-
-    /**
-     * Envia datos a la API.
-     * 
-     * @param {string} ruta 
-     * @param {FormData} BODY 
-     */
-    async function sendData(ruta, BODY){
-        return await fetch(API + ruta,{
-            method: 'POST',
-            body: BODY,
-        }).then(respuesta => {
-            return respuesta.json();
-        }).catch();
-    }
 });

@@ -10,14 +10,66 @@ document.addEventListener('DOMContentLoaded', function(){
             });
         },
         enviar: async function(){
-            let formData = new FormData(formulario.contenido);
-            let respuesta = await sendData('/noticia/crear', formData);
-            if(respuesta.status){
-                let categoria_seleccionada = document.querySelector('#categoria').value;
-                let categoria_nombre = categoria.obtener(categoria_seleccionada);
-                window.location.replace(URL + '/panel_' + categoria_nombre + '.html');
+            let estatus = this.validar();
+            if(estatus){
+                let formData = new FormData(formulario.contenido);
+                let respuesta = await api.sendData('/noticia/crear', formData);
+                if(respuesta.status){
+                    let categoria_seleccionada = document.querySelector('#categoria').value;
+                    let categoria_nombre = categoria.obtener(categoria_seleccionada);
+                    window.location.replace(route.url + '/panel_' + categoria_nombre + '.html');
+                }else{
+                    console.log(respuesta.error);
+                }
+            }
+        },
+        validar : function(){
+            let titulo = document.querySelector('input[name=titulo]');
+            let imagen = document.querySelector('input[name=imagen]');
+            let preview = document.querySelector('textarea[name=preview]');
+            let descripcion = document.querySelector('textarea[name=descripcion]');
+
+            let enviar = true;
+            let respuesta = validation.required(titulo.value);
+            if(!respuesta.status){
+                enviar = false;
+                titulo.nextElementSibling.innerHTML = respuesta.message;
             }else{
-                console.log(respuesta.error);
+                respuesta = validation.max(titulo.value, 98);
+                if(!respuesta.status){
+                    enviar = false;
+                    titulo.nextElementSibling.innerHTML = respuesta.message;
+                }
+            }
+
+            respuesta = validation.required(imagen.value);
+            if(!respuesta.status){
+                enviar = false;
+                imagen.nextElementSibling.innerHTML = respuesta.message;
+            }
+
+            respuesta = validation.required(preview.value);
+            if(!respuesta.status){
+                enviar = false;
+                preview.nextElementSibling.innerHTML = respuesta.message;
+            }else{
+                respuesta = validation.max(preview.value, 230);
+                if(!respuesta.status){
+                    enviar = false;
+                    preview.nextElementSibling.innerHTML = respuesta.message;
+                }
+            }
+
+            respuesta = validation.required(descripcion.value);
+            if(!respuesta.status){
+                enviar = false;
+                descripcion.nextElementSibling.innerHTML = respuesta.message;
+            }
+
+            if(enviar){
+                return true;
+            }else{
+                return false;
             }
         },
     };
@@ -50,7 +102,7 @@ document.addEventListener('DOMContentLoaded', function(){
                 let token = localstorage.load('LaMiraToken');
                 let formData = new FormData();
                 formData.append('token', token)
-                let respuesta = await sendData('/verificar', formData);
+                let respuesta = await api.sendData('/verificar', formData);
                 if(respuesta.status){
                     this.show();
                     this.contenido.addEventListener('click', function(evento){
@@ -74,7 +126,7 @@ document.addEventListener('DOMContentLoaded', function(){
         },
         salir: async function(){
             localstorage.remove('LaMiraToken');
-            window.location.replace(URL + '/acceder.html');
+            window.location.replace(route.url + '/acceder.html');
         },
     };
 
@@ -84,51 +136,22 @@ document.addEventListener('DOMContentLoaded', function(){
             let token = localstorage.load('LaMiraToken');
             let formData = new FormData();
             formData.append('token', token)
-            let respuesta = await sendData('/verificar', formData);
+            let respuesta = await api.sendData('/verificar', formData);
             if(respuesta.status){
                 sesion.load();
                 formulario.load();
-                respuesta = await getData('/categorias');
+                respuesta = await api.getData('/categorias');
                 if(respuesta.status){
                     categoria.load(respuesta.datos.categorias);
                 }
             }else{
                 localstorage.remove('LaMiraToken');
-                window.location.replace(URL + '/acceder.html');
+                window.location.replace(route.url + '/acceder.html');
             }
         }else{
-            window.location.replace(URL + '/acceder.html');
+            window.location.replace(route.url + '/acceder.html');
         }
     }
 
     load();
-
-    /**
-     * Obtiene datos de la API.
-     * 
-     * @param {string} ruta 
-     */
-    function getData(ruta){
-        return fetch(API + ruta)
-            .then(respuesta => {
-                return respuesta.json();
-            }).catch(error => {
-                console.log(error);
-            })
-    }
-
-    /**
-     * Envia datos a la API.
-     * 
-     * @param {string} ruta 
-     * @param {FormData} BODY 
-     */
-    async function sendData(ruta, BODY){
-        return await fetch(API + ruta,{
-            method: 'POST',
-            body: BODY,
-        }).then(respuesta => {
-            return respuesta.json();
-        }).catch();
-    }
 });

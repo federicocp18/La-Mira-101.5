@@ -1,5 +1,4 @@
 document.addEventListener('DOMContentLoaded', function(){
-    
     let economia = {
         contenido: document.querySelector('#economia'),
         load: function(data){
@@ -37,7 +36,7 @@ document.addEventListener('DOMContentLoaded', function(){
                 let token = localstorage.load('LaMiraToken');
                 let formData = new FormData();
                 formData.append('token', token)
-                let respuesta = await sendData('/verificar', formData);
+                let respuesta = await api.sendData('/verificar', formData);
                 if(respuesta.status){
                     this.show();
                     this.contenido.addEventListener('click', function(evento){
@@ -68,25 +67,11 @@ document.addEventListener('DOMContentLoaded', function(){
     /** Carga la seccion economia entera. */
     async function load(){
         sesion.load();
-        respuesta = await getData('/noticias/2');
+        respuesta = await api.getData('/noticias/2');
         if(respuesta.status){
             economia.load(respuesta.datos.noticias);
         }
     }
 
     load();
-
-    /**
-     * Obtiene datos de la API.
-     * 
-     * @param {string} ruta 
-     */
-    function getData(ruta){
-        return fetch(API + ruta)
-            .then(respuesta => {
-                return respuesta.json();
-            }).catch(error => {
-                console.log(error);
-            })
-    }
 });

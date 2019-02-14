@@ -21,5 +21,5 @@
 
 	Route::addRoute('POST', '/verificar', 'AuthController@verifyToken');
 
-	/** AuthController */
+	/** CategoriaController */
 	Route::addRoute('GET', '/categorias', 'CategoriaController@getAll');
