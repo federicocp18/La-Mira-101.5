@@ -21,18 +21,7 @@
 		public $clave;
 			
 		/** @var array Las reglas de la validación. **/
-		public static $reglas = [
-			'login' => [
-				'clave' => 'required|min:4',
-				'correo' => 'required|exists:usuarios'
-			],'register' => [
-				'clave' => 'required|min:4|confirmed',
-				'correo' => 'required|unique:usuarios',
-				'nombre' => 'required|min:2'
-			],'edit' => [
-				'nombre' => 'required|min:2'
-			]
-		];
+		public static $reglas = [];
 		
 		/**
 			* Constructor de usuario, ya sea por id o por correo y contraseña.

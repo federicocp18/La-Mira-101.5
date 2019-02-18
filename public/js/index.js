@@ -13,10 +13,24 @@ document.addEventListener('DOMContentLoaded', function(){
                         let picture = document.createElement('picture');
                         article.appendChild(picture);
 
-                            let img = document.createElement('img');
-                            img.src = 'img/noticias/' + data[posicion].imagen;
-                            img.alt = data[posicion].titulo;
-                            picture.appendChild(img);
+							if(data[posicion].archivo == 1){
+								let img = document.createElement('img');
+								img.src = 'img/noticias/' + data[posicion].ruta;
+								img.alt = data[posicion].titulo;
+								picture.appendChild(img);
+							}else if(data[posicion].archivo == 2){
+								let iframe = document.createElement('iframe');
+								iframe.src = data[posicion].ruta;
+								picture.appendChild(iframe);
+							}else{
+								let audio = document.createElement('audio');
+								audio.controls = true;
+								picture.appendChild(audio);
+
+									let source = document.createElement('source');
+									source.src = data[posicion].ruta;
+									audio.appendChild(source);
+							}
 
                             let h3 = document.createElement('h3');
                             h3.innerHTML = data[posicion].titulo;
@@ -43,10 +57,24 @@ document.addEventListener('DOMContentLoaded', function(){
                         let picture = document.createElement('picture');
                         article.appendChild(picture);
 
-                            let img = document.createElement('img');
-                            img.src = 'img/noticias/' + data[posicion].imagen;
-                            img.alt = data[posicion].titulo;
-                            picture.appendChild(img);
+							if(data[posicion].archivo == 1){
+								let img = document.createElement('img');
+								img.src = 'img/noticias/' + data[posicion].ruta;
+								img.alt = data[posicion].titulo;
+								picture.appendChild(img);
+							}else if(data[posicion].archivo == 2){
+								let iframe = document.createElement('iframe');
+								iframe.src = data[posicion].ruta;
+								picture.appendChild(iframe);
+							}else{
+								let audio = document.createElement('audio');
+								audio.controls = true;
+								picture.appendChild(audio);
+
+									let source = document.createElement('source');
+									source.src = data[posicion].ruta;
+									audio.appendChild(source);
+							}
 
                             let h3 = document.createElement('h3');
                             h3.innerHTML = data[posicion].titulo;
@@ -73,10 +101,24 @@ document.addEventListener('DOMContentLoaded', function(){
                         let picture = document.createElement('picture');
                         article.appendChild(picture);
 
-                            let img = document.createElement('img');
-                            img.src = 'img/noticias/' + data[posicion].imagen;
-                            img.alt = data[posicion].titulo;
-                            picture.appendChild(img);
+							if(data[posicion].archivo == 1){
+								let img = document.createElement('img');
+								img.src = 'img/noticias/' + data[posicion].ruta;
+								img.alt = data[posicion].titulo;
+								picture.appendChild(img);
+							}else if(data[posicion].archivo == 2){
+								let iframe = document.createElement('iframe');
+								iframe.src = data[posicion].ruta;
+								picture.appendChild(iframe);
+							}else{
+								let audio = document.createElement('audio');
+								audio.controls = true;
+								picture.appendChild(audio);
+
+									let source = document.createElement('source');
+									source.src = data[posicion].ruta;
+									audio.appendChild(source);
+							}
 
                             let h3 = document.createElement('h3');
                             h3.innerHTML = data[posicion].titulo;
@@ -103,10 +145,24 @@ document.addEventListener('DOMContentLoaded', function(){
                         let picture = document.createElement('picture');
                         article.appendChild(picture);
 
-                            let img = document.createElement('img');
-                            img.src = 'img/noticias/' + data[posicion].imagen;
-                            img.alt = data[posicion].titulo;
-                            picture.appendChild(img);
+							if(data[posicion].archivo == 1){
+								let img = document.createElement('img');
+								img.src = 'img/noticias/' + data[posicion].ruta;
+								img.alt = data[posicion].titulo;
+								picture.appendChild(img);
+							}else if(data[posicion].archivo == 2){
+								let iframe = document.createElement('iframe');
+								iframe.src = data[posicion].ruta;
+								picture.appendChild(iframe);
+							}else{
+								let audio = document.createElement('audio');
+								audio.controls = true;
+								picture.appendChild(audio);
+
+									let source = document.createElement('source');
+									source.src = data[posicion].ruta;
+									audio.appendChild(source);
+							}
 
                             let h3 = document.createElement('h3');
                             h3.innerHTML = data[posicion].titulo;
@@ -118,6 +174,7 @@ document.addEventListener('DOMContentLoaded', function(){
             }
         },
     };
+
     let politica = {
         contenido: document.querySelector('#politica'),
         load: function(data){
@@ -132,10 +189,24 @@ document.addEventListener('DOMContentLoaded', function(){
                         let picture = document.createElement('picture');
                         article.appendChild(picture);
 
-                            let img = document.createElement('img');
-                            img.src = 'img/noticias/' + data[posicion].imagen;
-                            img.alt = data[posicion].titulo;
-                            picture.appendChild(img);
+							if(data[posicion].archivo == 1){
+								let img = document.createElement('img');
+								img.src = 'img/noticias/' + data[posicion].ruta;
+								img.alt = data[posicion].titulo;
+								picture.appendChild(img);
+							}else if(data[posicion].archivo == 2){
+								let iframe = document.createElement('iframe');
+								iframe.src = data[posicion].ruta;
+								picture.appendChild(iframe);
+							}else{
+								let audio = document.createElement('audio');
+								audio.controls = true;
+								picture.appendChild(audio);
+
+									let source = document.createElement('source');
+									source.src = data[posicion].ruta;
+									audio.appendChild(source);
+							}
 
                             let h3 = document.createElement('h3');
                             h3.innerHTML = data[posicion].titulo;
@@ -147,7 +218,7 @@ document.addEventListener('DOMContentLoaded', function(){
             }
         },
     };
-
+    
     let sociales = {
         contenido: document.querySelector('#sociales'),
         load: function(data){
@@ -162,10 +233,24 @@ document.addEventListener('DOMContentLoaded', function(){
                         let picture = document.createElement('picture');
                         article.appendChild(picture);
 
-                            let img = document.createElement('img');
-                            img.src = 'img/noticias/' + data[posicion].imagen;
-                            img.alt = data[posicion].titulo;
-                            picture.appendChild(img);
+							if(data[posicion].archivo == 1){
+								let img = document.createElement('img');
+								img.src = 'img/noticias/' + data[posicion].ruta;
+								img.alt = data[posicion].titulo;
+								picture.appendChild(img);
+							}else if(data[posicion].archivo == 2){
+								let iframe = document.createElement('iframe');
+								iframe.src = data[posicion].ruta;
+								picture.appendChild(iframe);
+							}else{
+								let audio = document.createElement('audio');
+								audio.controls = true;
+								picture.appendChild(audio);
+
+									let source = document.createElement('source');
+									source.src = data[posicion].ruta;
+									audio.appendChild(source);
+							}
 
                             let h3 = document.createElement('h3');
                             h3.innerHTML = data[posicion].titulo;
@@ -192,70 +277,24 @@ document.addEventListener('DOMContentLoaded', function(){
                         let picture = document.createElement('picture');
                         article.appendChild(picture);
 
-                            let img = document.createElement('img');
-                            img.src = 'img/noticias/' + data[posicion].imagen;
-                            img.alt = data[posicion].titulo;
-                            picture.appendChild(img);
+							if(data[posicion].archivo == 1){
+								let img = document.createElement('img');
+								img.src = 'img/noticias/' + data[posicion].ruta;
+								img.alt = data[posicion].titulo;
+								picture.appendChild(img);
+							}else if(data[posicion].archivo == 2){
+								let iframe = document.createElement('iframe');
+								iframe.src = data[posicion].ruta;
+								picture.appendChild(iframe);
+							}else{
+								let audio = document.createElement('audio');
+								audio.controls = true;
+								picture.appendChild(audio);
 
-                            let h3 = document.createElement('h3');
-                            h3.innerHTML = data[posicion].titulo;
-                            picture.appendChild(h3);
-
-                            let p = document.createElement('p');
-                            p.innerHTML = data[posicion].preview;
-                            picture.appendChild(p);
-            }
-        },
-    };
-
-    let seguridad = {
-        contenido: document.querySelector('#seguridad'),
-        load: function(data){
-            for(let posicion in data){
-                let a = document.createElement('a');
-                a.href = 'ver.html?noticia=' + data[posicion].id_noticia;
-                this.contenido.appendChild(a);
-
-                    let article = document.createElement('article');
-                    a.appendChild(article);
-
-                        let picture = document.createElement('picture');
-                        article.appendChild(picture);
-
-                            let img = document.createElement('img');
-                            img.src = 'img/noticias/' + data[posicion].imagen;
-                            img.alt = data[posicion].titulo;
-                            picture.appendChild(img);
-
-                            let h3 = document.createElement('h3');
-                            h3.innerHTML = data[posicion].titulo;
-                            picture.appendChild(h3);
-
-                            let p = document.createElement('p');
-                            p.innerHTML = data[posicion].preview;
-                            picture.appendChild(p);
-            }
-        },
-    };
-
-    let comunitarios = {
-        contenido: document.querySelector('#comunitarios'),
-        load: function(data){
-            for(let posicion in data){
-                let a = document.createElement('a');
-                a.href = 'ver.html?noticia=' + data[posicion].id_noticia;
-                this.contenido.appendChild(a);
-
-                    let article = document.createElement('article');
-                    a.appendChild(article);
-
-                        let picture = document.createElement('picture');
-                        article.appendChild(picture);
-
-                            let img = document.createElement('img');
-                            img.src = 'img/noticias/' + data[posicion].imagen;
-                            img.alt = data[posicion].titulo;
-                            picture.appendChild(img);
+									let source = document.createElement('source');
+									source.src = data[posicion].ruta;
+									audio.appendChild(source);
+							}
 
                             let h3 = document.createElement('h3');
                             h3.innerHTML = data[posicion].titulo;
@@ -322,10 +361,6 @@ document.addEventListener('DOMContentLoaded', function(){
             sociales.load(noticias_sociales);
             let noticias_deportes = distinguir(respuesta.datos, '7');
             deportes.load(noticias_deportes);
-            let noticias_seguridad = distinguir(respuesta.datos, '8');
-            seguridad.load(noticias_seguridad);
-            let noticias_comunitarios = distinguir(respuesta.datos, '9');
-            comunitarios.load(noticias_comunitarios);
         }
     }
 

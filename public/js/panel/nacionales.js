@@ -13,10 +13,24 @@ document.addEventListener('DOMContentLoaded', function(){
                     let td2 = document.createElement('td');
                     tr.appendChild(td2);
 
+                    if(data[posicion].archivo == 1){
                         let img = document.createElement('img');
-                        img.src = 'img/noticias/' + data[posicion].imagen;
+                        img.src = 'img/noticias/' + data[posicion].ruta;
                         img.alt = data[posicion].titulo;
                         td2.appendChild(img);
+                    }else if(data[posicion].archivo == 2){
+                        let iframe = document.createElement('iframe');
+                        iframe.src = data[posicion].ruta;
+                        td2.appendChild(iframe);
+                    }else{
+                        let audio = document.createElement('audio');
+                        audio.controls = true;
+                        td2.appendChild(audio);
+
+                            let source = document.createElement('source');
+                            source.src = data[posicion].ruta;
+                            audio.appendChild(source);
+                    }
 
                     let td3 = document.createElement('td');
                     td3.innerHTML = data[posicion].preview;

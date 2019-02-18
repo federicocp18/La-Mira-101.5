@@ -12,10 +12,24 @@ document.addEventListener('DOMContentLoaded', function(){
                     h2.innerHTML = data.titulo;
                     picture.appendChild(h2);
 
-                    let img = document.createElement('img');
-                    img.src = 'img/noticias/' + data.imagen;
-                    img.alt = data.titulo;
-                    picture.appendChild(img);
+                    if(data.archivo == 1){
+                        let img = document.createElement('img');
+                        img.src = 'img/noticias/' + data.ruta;
+                        img.alt = data.titulo;
+                        picture.appendChild(img);
+                    }else if(data.archivo == 2){
+                        let iframe = document.createElement('iframe');
+                        iframe.src = data.ruta;
+                        picture.appendChild(iframe);
+                    }else{
+                        let audio = document.createElement('audio');
+                        audio.controls = true;
+                        picture.appendChild(audio);
+
+                            let source = document.createElement('source');
+                            source.src = data.ruta;
+                            audio.appendChild(source);
+                    }
 
                     let p = document.createElement('p');
                     p.innerHTML = data.descripcion;

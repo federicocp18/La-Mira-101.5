@@ -24,30 +24,13 @@
 		/** @var string **/
 		public $preview;
 		
-		/** @var string **/
-		public $imagen;
+		/** @var int **/
+		public $archivo;
 		
-		public static $reglas = [
-			'create' => [
-				'id_color' => 'required|exists:colores',
-				'id_tipografia' => 'required|exists:tipografias',
-				'mensaje' => 'required'
-			],'respond' => [
-				'id_color' => 'required|exists:colores',
-				'id_respuesta' => 'required|exists:mensajes',
-				'id_tipografia' => 'required|exists:tipografias',
-				'mensaje' => 'required'
-			],'edit' => [
-				'id_color' => 'required|exists:colores',
-				'id_tipografia' => 'required|exists:tipografias',
-				'mensaje' => 'required'
-			],'charlar' => [
-				'id_color' => 'required|exists:colores',
-				'id_chat' => 'required|exists:chats',
-				'id_tipografia' => 'required|exists:tipografias',
-				'mensaje' => 'required'
-			]
-		];
+		/** @var string **/
+		public $ruta;
+		
+		public static $reglas = [];
 		
 		public function __construct($id_noticia = null){
 			if($id_noticia != null){
@@ -76,7 +59,8 @@
 				'descripcion'	=> $this->descripcion,
 				'categoria'		=> $this->categoria,
 				'preview'		=> $this->preview,
-				'imagen'		=> $this->imagen,
+				'archivo'		=> $this->archivo,
+				'ruta'			=> $this->ruta,
 			];
 		}
 		
@@ -86,7 +70,8 @@
 			$this->descripcion	= $fila['descripcion'];
 			$this->categoria 	= new Categoria($fila['id_categoria']);
 			$this->preview		= $fila['preview'];
-			$this->imagen		= $fila['imagen'];
+			$this->archivo		= $fila['archivo'];
+			$this->ruta			= $fila['ruta'];
 		}
 		
 		public static function where($campo, $diferenciador, $comparador){
