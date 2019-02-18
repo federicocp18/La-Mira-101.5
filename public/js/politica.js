@@ -67,7 +67,7 @@ document.addEventListener('DOMContentLoaded', function(){
     /** Carga la seccion politica entera. */
     async function load(){
         sesion.load();
-        respuesta = await api.getData('/noticias/1');
+        respuesta = await api.getData('/noticias/5');
         if(respuesta.status){
             politica.load(respuesta.datos.noticias);
         }

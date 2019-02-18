@@ -1,6 +1,66 @@
 document.addEventListener('DOMContentLoaded', function(){
-    let politica = {
-        contenido: document.querySelector('#politica'),
+    let nacionales = {
+        contenido: document.querySelector('#nacionales'),
+        load: function(data){
+            for(let posicion in data){
+                let a = document.createElement('a');
+                a.href = 'ver.html?noticia=' + data[posicion].id_noticia;
+                this.contenido.appendChild(a);
+
+                    let article = document.createElement('article');
+                    a.appendChild(article);
+
+                        let picture = document.createElement('picture');
+                        article.appendChild(picture);
+
+                            let img = document.createElement('img');
+                            img.src = 'img/noticias/' + data[posicion].imagen;
+                            img.alt = data[posicion].titulo;
+                            picture.appendChild(img);
+
+                            let h3 = document.createElement('h3');
+                            h3.innerHTML = data[posicion].titulo;
+                            picture.appendChild(h3);
+
+                            let p = document.createElement('p');
+                            p.innerHTML = data[posicion].preview;
+                            picture.appendChild(p);
+            }
+        },
+    };
+
+    let locales = {
+        contenido: document.querySelector('#locales'),
+        load: function(data){
+            for(let posicion in data){
+                let a = document.createElement('a');
+                a.href = 'ver.html?noticia=' + data[posicion].id_noticia;
+                this.contenido.appendChild(a);
+
+                    let article = document.createElement('article');
+                    a.appendChild(article);
+
+                        let picture = document.createElement('picture');
+                        article.appendChild(picture);
+
+                            let img = document.createElement('img');
+                            img.src = 'img/noticias/' + data[posicion].imagen;
+                            img.alt = data[posicion].titulo;
+                            picture.appendChild(img);
+
+                            let h3 = document.createElement('h3');
+                            h3.innerHTML = data[posicion].titulo;
+                            picture.appendChild(h3);
+
+                            let p = document.createElement('p');
+                            p.innerHTML = data[posicion].preview;
+                            picture.appendChild(p);
+            }
+        },
+    };
+
+    let interior = {
+        contenido: document.querySelector('#interior'),
         load: function(data){
             for(let posicion in data){
                 let a = document.createElement('a');
@@ -58,9 +118,8 @@ document.addEventListener('DOMContentLoaded', function(){
             }
         },
     };
-
-    let social = {
-        contenido: document.querySelector('#social'),
+    let politica = {
+        contenido: document.querySelector('#politica'),
         load: function(data){
             for(let posicion in data){
                 let a = document.createElement('a');
@@ -89,8 +148,38 @@ document.addEventListener('DOMContentLoaded', function(){
         },
     };
 
-    let deporte = {
-        contenido: document.querySelector('#deporte'),
+    let sociales = {
+        contenido: document.querySelector('#sociales'),
+        load: function(data){
+            for(let posicion in data){
+                let a = document.createElement('a');
+                a.href = 'ver.html?noticia=' + data[posicion].id_noticia;
+                this.contenido.appendChild(a);
+
+                    let article = document.createElement('article');
+                    a.appendChild(article);
+
+                        let picture = document.createElement('picture');
+                        article.appendChild(picture);
+
+                            let img = document.createElement('img');
+                            img.src = 'img/noticias/' + data[posicion].imagen;
+                            img.alt = data[posicion].titulo;
+                            picture.appendChild(img);
+
+                            let h3 = document.createElement('h3');
+                            h3.innerHTML = data[posicion].titulo;
+                            picture.appendChild(h3);
+
+                            let p = document.createElement('p');
+                            p.innerHTML = data[posicion].preview;
+                            picture.appendChild(p);
+            }
+        },
+    };
+
+    let deportes = {
+        contenido: document.querySelector('#deportes'),
         load: function(data){
             for(let posicion in data){
                 let a = document.createElement('a');
@@ -219,18 +308,24 @@ document.addEventListener('DOMContentLoaded', function(){
         respuesta = await api.getData('/home');
         if(respuesta.status){
             sesion.load();
-            let politicas = distinguir(respuesta.datos, '1');
-            politica.load(politicas);
-            let economias = distinguir(respuesta.datos, '2');
-            economia.load(economias);
-            let sociales = distinguir(respuesta.datos, '3');
-            social.load(sociales);
-            let deportes = distinguir(respuesta.datos, '4');
-            deporte.load(deportes);
-            let seguridades = distinguir(respuesta.datos, '5');
-            seguridad.load(seguridades);
-            let comunitario = distinguir(respuesta.datos, '6');
-            comunitarios.load(comunitario);
+            let noticias_nacionales = distinguir(respuesta.datos, '1');
+            nacionales.load(noticias_nacionales);
+            let noticias_locales = distinguir(respuesta.datos, '2');
+            locales.load(noticias_locales);
+            let noticias_interior = distinguir(respuesta.datos, '3');
+            interior.load(noticias_interior);
+            let noticias_economia = distinguir(respuesta.datos, '4');
+            economia.load(noticias_economia);
+            let noticias_politica = distinguir(respuesta.datos, '5');
+            politica.load(noticias_politica);
+            let noticias_sociales = distinguir(respuesta.datos, '6');
+            sociales.load(noticias_sociales);
+            let noticias_deportes = distinguir(respuesta.datos, '7');
+            deportes.load(noticias_deportes);
+            let noticias_seguridad = distinguir(respuesta.datos, '8');
+            seguridad.load(noticias_seguridad);
+            let noticias_comunitarios = distinguir(respuesta.datos, '9');
+            comunitarios.load(noticias_comunitarios);
         }
     }
 

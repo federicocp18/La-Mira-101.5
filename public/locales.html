@@ -5,7 +5,7 @@
 	<meta name="viewport" content="width=device-width,initial-scale=1, maximum-scale=1">
 	<title>LaMira</title>
 	<link rel="stylesheet" href="estilos.css" />
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
 </head>
 <body>
 <div class="loader"></div>
@@ -15,50 +15,51 @@
 <h1>LaMira</h1>
 
 <nav>
-	<span id="menu">menu</span>
-	<div id="desplegable">
-		<div id="desplegable_conten">
-		<figure id="logo">
-			<img src="img/logo.png" alt="logo" />
-		</figure>
-			<a href="panel_politica.html">política</a>
-			<a href="panel_economia.html">economía</a>
-			<a href="panel_social.html">social</a>
-			<a href="panel_deporte.html">deporte</a>
-			<a href="panel_seguridad.html">seguridad</a>
-			<a href="panel_comunitarios.html">comunitarios</a>
-			<a id="sesion" href="#">salir</a>
-		</div>
+<span id="menu">menu</span>
+<div id="desplegable">
+	<div id="desplegable_conten">
+	<figure id="logo">
+		<img src="img/logo.png" alt="logo" />
+	</figure>
+		<a href="politica.html">política</a>
+		<a href="economia.html">economía</a>
+		<a href="sociales.html">sociales</a>
+		<a href="deportes.html">deportes</a>
+		<a href="seguridad.html">seguridad</a>
+		<a href="comunitarios.html">comunitarios</a>
+		<a id="sesion" href="#">salir</a>
 	</div>
+</div>
 </nav>
 
 </header>
 
 
+<div id="portada">
+
+<picture id="portada_grande">
+	<img src="img/portada.jpg" alt="portada" />
+</picture>
+
+<picture id="portada_chica">
+	<img src="img/portada2.jpg" alt="portada" />
+</picture>
+
+</div>
 
 
 <main>
 
 
-<section id="tabla_noticias">
-
-<h2>Noticias Deporte</h2>
-<small>Vista de todos los datos en noticias deporte</small>
-<a href="formulario_agregar.html">Agregar</a>
-
-<table>
-<tr>
-    <th>Titulo</th>
-    <th>Imagen</th> 
-    <th>Preview</th>
-    <th>Descripcion</th>
-    <th>Acciones</th>
-</tr>
 
 
+<section id="locales" class="cuadricula">
 
-</table>
+	<h2>Locales</h2>
+
 </section>
+
+
 
 
 
@@ -72,7 +73,7 @@
 </figure>
 	<h3>Redes Sociales</h3>
 
-<picture>
+	<picture>
 	<a href="https://www.facebook.com/lamirafsa">
 		<img src="img/facebook.png" alt="facebook" />
 	</a>
@@ -117,6 +118,6 @@
 <script src="js/api.js"></script>
 <script src="js/route.js"></script>
 <script src="js/localstorage.js"></script>
-<script src="js/panel/deporte.js"></script>
+<script src="js/locales.js"></script>
 </body>
 </html>

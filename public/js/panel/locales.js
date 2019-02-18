@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', function(){
-    let social = {
+    let locales = {
         contenido: document.querySelector('#tabla_noticias table'),
         load: function(data){
             for(let posicion in data){
@@ -58,7 +58,7 @@ document.addEventListener('DOMContentLoaded', function(){
             let respuesta = await api.sendData('/noticia/' + id_noticia + '/eliminar');
             if(respuesta.status){
                 let tr = document.querySelector('a[data-id_noticia="' + id_noticia + '"]').parentNode.parentNode;
-                social.contenido.removeChild(tr);
+                locales.contenido.removeChild(tr);
             }else{
                 console.log(respuesta.error);
             }
@@ -100,7 +100,7 @@ document.addEventListener('DOMContentLoaded', function(){
         },
     };
 
-    /** Carga la seccion social entera. */
+    /** Carga la seccion locales entera. */
     async function load(){
         if(localstorage.load('LaMiraToken')){
             let token = localstorage.load('LaMiraToken');
@@ -109,9 +109,9 @@ document.addEventListener('DOMContentLoaded', function(){
             let respuesta = await api.sendData('/verificar', formData);
             if(respuesta.status){
                 sesion.load();
-                respuesta = await api.getData('/noticias/3');
+                respuesta = await api.getData('/noticias/2');
                 if(respuesta.status){
-                    social.load(respuesta.datos.noticias);
+                    locales.load(respuesta.datos.noticias);
                 }
                 botones.load();
             }else{

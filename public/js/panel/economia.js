@@ -109,7 +109,7 @@ document.addEventListener('DOMContentLoaded', function(){
             let respuesta = await api.sendData('/verificar', formData);
             if(respuesta.status){
                 sesion.load();
-                respuesta = await api.getData('/noticias/2');
+                respuesta = await api.getData('/noticias/4');
                 if(respuesta.status){
                     economia.load(respuesta.datos.noticias);
                 }

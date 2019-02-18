@@ -40,35 +40,27 @@
 <main>
 
 
-<section id="formulario">
-<h2>Noticias</h2>
-<small>Editar noticias</small>
+<section id="tabla_noticias">
 
-<form class="agregar" method="post" enctype="multipart/form-data" action="#">
+<h2>Noticias Deportes</h2>
+<small>Vista de todos los datos en noticias deportes</small>
+<a href="formulario_agregar.html">Agregar</a>
 
-<span>Titulo</span>
-<input type="text" name="titulo"/>
-<small></small>
+<table>
+<tr>
+    <th>Titulo</th>
+    <th>Imagen</th> 
+    <th>Preview</th>
+    <th>Descripcion</th>
+    <th>Acciones</th>
+</tr>
 
-<span>Imagen</span>
-<input type="file" name="imagen"/>
 
-<div>
-<span>Preview</span>
-<textarea name="preview" rows="10" cols="50"></textarea>
-<small></small>
 
-<span>Descripcion</span>
-<textarea name="descripcion" rows="10" cols="50"></textarea>
-<small></small>
-</div>
-
-<select id='categoria' name="id_categoria"></select>
-
-<input type="submit" value="aceptar" />
-
-</form>
+</table>
 </section>
+
+
 
 </main>
 
@@ -125,7 +117,6 @@
 <script src="js/api.js"></script>
 <script src="js/route.js"></script>
 <script src="js/localstorage.js"></script>
-<script src="js/validation.js"></script>
-<script src="js/panel/editar.js"></script>
+<script src="js/panel/deportes.js"></script>
 </body>
 </html>

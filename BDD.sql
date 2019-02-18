@@ -32,33 +32,35 @@ VALUES
 INSERT INTO 
 	categorias (id_categoria, nombre)
 VALUES
-	(1, 'Politica'),
-	(2, 'Economia'),
-	(3, 'Social'),
-	(4, 'Deporte'),
-	(5, 'Seguridad'),
-	(6, 'Comunitarios');
+	(1, 'Nacionales'),
+	(2, 'Locales'),
+	(3, 'Interior'),
+	(4, 'Economía'),
+	(5, 'Política'),
+	(6, 'Sociales'),
+	(7, 'Deportes'),
+	(8, 'Seguridad'),
+	(9, 'Comunitarios');
 	
 INSERT INTO 
 	noticias (id_noticia, titulo, descripcion, preview, imagen, id_categoria)
 VALUES
-	(1, 'Noticia Politica 1.', 'Descripcion de noticia random.', 'Preview de noticia random.', '1.jpg', 1),
-	(2, 'Noticia Politica 2.', 'Descripcion de noticia random.', 'Preview de noticia random.', '1.jpg', 1),
-	(3, 'Noticia Politica 3.', 'Descripcion de noticia random.', 'Preview de noticia random.', '1.jpg', 1),
-	(4, 'Noticia Economia 1.', 'Descripcion de noticia random.', 'Preview de noticia random.', '1.jpg', 2),
-	(5, 'Noticia Economia 2.', 'Descripcion de noticia random.', 'Preview de noticia random.', '1.jpg', 2),
-	(6, 'Noticia Economia 3.', 'Descripcion de noticia random.', 'Preview de noticia random.', '1.jpg', 2),
-	(7, 'Noticia Social 1.', 'Descripcion de noticia random.', 'Preview de noticia random.', '1.jpg', 3),
-	(8, 'Noticia Social 2.', 'Descripcion de noticia random.', 'Preview de noticia random.', '1.jpg', 3),
-	(9, 'Noticia Social 3.', 'Descripcion de noticia random.', 'Preview de noticia random.', '1.jpg', 3),
-	(10, 'Noticia Politica 4.', 'Descripcion de noticia random.', 'Preview de noticia random.', '1.jpg', 1),
-	(11, 'Noticia Deporte 1.', 'Descripcion de noticia random.', 'Preview de noticia random.', '1.jpg', 4),
-	(12, 'Noticia Deporte 2.', 'Descripcion de noticia random.', 'Preview de noticia random.', '1.jpg', 4),
-	(13, 'Noticia Deporte 3.', 'Descripcion de noticia random.', 'Preview de noticia random.', '1.jpg', 4),
-	(14, 'Noticia Seguridad 1.', 'Descripcion de noticia random.', 'Preview de noticia random.', '1.jpg', 5),
-	(15, 'Noticia Seguridad 2.', 'Descripcion de noticia random.', 'Preview de noticia random.', '1.jpg', 5),
-	(16, 'Noticia Seguridad 3.', 'Descripcion de noticia random.', 'Preview de noticia random.', '1.jpg', 5),
-	(17, 'Noticia Comunitarios 1.', 'Descripcion de noticia random.', 'Preview de noticia random.', '1.jpg', 6),
-	(18, 'Noticia Comunitarios 2.', 'Descripcion de noticia random.', 'Preview de noticia random.', '1.jpg', 6),
-	(19, 'Noticia Comunitarios 3.', 'Descripcion de noticia random.', 'Preview de noticia random.', '1.jpg', 6),
-	(20, 'Noticia Seguridad 4.', 'Descripcion de noticia random.', 'Preview de noticia random.', '1.jpg', 5);
+	(1, 'Noticia Nacional 1.', 'Descripcion de noticia.', 'Preview de noticia.', '1.jpg', 1),
+	(2, 'Noticia Nacional 2.', 'Descripcion de noticia.', 'Preview de noticia.', '1.jpg', 1),
+	(3, 'Noticia Nacional 3.', 'Descripcion de noticia.', 'Preview de noticia.', '1.jpg', 1),
+	(4, 'Noticia Local 1.', 'Descripcion de noticia.', 'Preview de noticia.', '1.jpg', 2),
+	(5, 'Noticia Local 2.', 'Descripcion de noticia.', 'Preview de noticia.', '1.jpg', 2),
+	(6, 'Noticia Local 3.', 'Descripcion de noticia.', 'Preview de noticia.', '1.jpg', 2),
+	(7, 'Noticia Local 4.', 'Descripcion de noticia.', 'Preview de noticia.', '1.jpg', 2),
+	(8, 'Noticia Interior 1.', 'Descripcion de noticia.', 'Preview de noticia.', '1.jpg', 3),
+	(9, 'Noticia Interior 2.', 'Descripcion de noticia.', 'Preview de noticia.', '1.jpg', 3),
+	(10, 'Noticia Economía 1.', 'Descripcion de noticia.', 'Preview de noticia.', '1.jpg', 4),
+	(11, 'Noticia Política 1.', 'Descripcion de noticia.', 'Preview de noticia.', '1.jpg', 5),
+	(12, 'Noticia Política 2.', 'Descripcion de noticia.', 'Preview de noticia.', '1.jpg', 5),
+	(13, 'Noticia Política 3.', 'Descripcion de noticia.', 'Preview de noticia.', '1.jpg', 5),
+	(14, 'Noticia Deporte 1.', 'Descripcion de noticia.', 'Preview de noticia.', '1.jpg', 7),
+	(15, 'Noticia Deporte 2.', 'Descripcion de noticia.', 'Preview de noticia.', '1.jpg', 7),
+	(16, 'Noticia Seguridad 1.', 'Descripcion de noticia.', 'Preview de noticia.', '1.jpg', 8),
+	(17, 'Noticia Seguridad 2.', 'Descripcion de noticia.', 'Preview de noticia.', '1.jpg', 8),
+	(18, 'Noticia Seguridad 3.', 'Descripcion de noticia.', 'Preview de noticia.', '1.jpg', 8),
+	(19, 'Noticia Comunitario 1.', 'Descripcion de noticia.', 'Preview de noticia.', '1.jpg', 9);

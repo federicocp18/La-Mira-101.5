@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', function(){
-    let deporte = {
-        contenido: document.querySelector('#deporte'),
+    let deportes = {
+        contenido: document.querySelector('#deportes'),
         load: function(data){
             for(let posicion in data){
                 let a = document.createElement('a');
@@ -64,12 +64,12 @@ document.addEventListener('DOMContentLoaded', function(){
         },
     };
 
-    /** Carga la seccion deporte entera. */
+    /** Carga la seccion deportes entera. */
     async function load(){
         sesion.load();
-        respuesta = await api.getData('/noticias/4');
+        respuesta = await api.getData('/noticias/7');
         if(respuesta.status){
-            deporte.load(respuesta.datos.noticias);
+            deportes.load(respuesta.datos.noticias);
         }
     }
 

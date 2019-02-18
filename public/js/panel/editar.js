@@ -129,7 +129,7 @@ document.addEventListener('DOMContentLoaded', function(){
         },
     };
 
-    /** Carga la seccion deporte entera. */
+    /** Carga la seccion deportes entera. */
     async function load(){
         if(localstorage.load('LaMiraToken')){
             let token = localstorage.load('LaMiraToken');

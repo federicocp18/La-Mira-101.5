@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', function(){
-    let social = {
-        contenido: document.querySelector('#social'),
+    let sociales = {
+        contenido: document.querySelector('#sociales'),
         load: function(data){
             for(let posicion in data){
                 let a = document.createElement('a');
@@ -64,12 +64,12 @@ document.addEventListener('DOMContentLoaded', function(){
         },
     };
 
-    /** Carga la seccion social entera. */
+    /** Carga la seccion sociales entera. */
     async function load(){
         sesion.load();
-        respuesta = await api.getData('/noticias/3');
+        respuesta = await api.getData('/noticias/6');
         if(respuesta.status){
-            social.load(respuesta.datos.noticias);
+            sociales.load(respuesta.datos.noticias);
         }
     }
 

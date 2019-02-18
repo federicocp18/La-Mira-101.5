@@ -67,7 +67,7 @@ document.addEventListener('DOMContentLoaded', function(){
     /** Carga la seccion comunitarios entera. */
     async function load(){
         sesion.load();
-        respuesta = await api.getData('/noticias/6');
+        respuesta = await api.getData('/noticias/9');
         if(respuesta.status){
             comunitarios.load(respuesta.datos.noticias);
         }

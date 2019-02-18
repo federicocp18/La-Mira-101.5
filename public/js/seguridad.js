@@ -67,7 +67,7 @@ document.addEventListener('DOMContentLoaded', function(){
     /** Carga la seccion seguridad entera. */
     async function load(){
         sesion.load();
-        respuesta = await api.getData('/noticias/5');
+        respuesta = await api.getData('/noticias/8');
         if(respuesta.status){
             seguridad.load(respuesta.datos.noticias);
         }

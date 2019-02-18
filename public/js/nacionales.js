@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', function(){
-    let economia = {
-        contenido: document.querySelector('#economia'),
+    let nacionales = {
+        contenido: document.querySelector('#nacionales'),
         load: function(data){
             for(let posicion in data){
                 let a = document.createElement('a');
@@ -64,12 +64,12 @@ document.addEventListener('DOMContentLoaded', function(){
         },
     };
 
-    /** Carga la seccion economia entera. */
+    /** Carga la seccion nacionales entera. */
     async function load(){
         sesion.load();
-        respuesta = await api.getData('/noticias/4');
+        respuesta = await api.getData('/noticias/1');
         if(respuesta.status){
-            economia.load(respuesta.datos.noticias);
+            nacionales.load(respuesta.datos.noticias);
         }
     }
 
