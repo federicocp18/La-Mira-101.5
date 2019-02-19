@@ -231,7 +231,6 @@ document.addEventListener('DOMContentLoaded', function(){
 
                     let article = document.createElement('article');
                     a.appendChild(article);
-                    console.log(data[posicion]);
 
                         let picture = document.createElement('picture');
                         article.appendChild(picture);
