@@ -28,7 +28,7 @@ CREATE TABLE noticias(
 INSERT INTO
 	usuarios (correo,clave,nombre)
 VALUES
-	('admin@admin.com',md5('admin'),'admin');
+	('mirko@gmail.com',md5('La_Mira7534'),'admin');
 
 INSERT INTO 
 	categorias (id_categoria, nombre)
