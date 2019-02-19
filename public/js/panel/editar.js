@@ -9,8 +9,8 @@ document.addEventListener('DOMContentLoaded', function(){
                 formulario.enviar(noticia.id_noticia);
             });
             document.querySelector('#formulario form input[type=text]').value = noticia.titulo;
-            document.querySelector('#formulario form textarea:first-of-type').innerHTML = noticia.preview;
-            document.querySelector('#formulario form textarea:last-of-type').innerHTML = noticia.descripcion;
+            document.querySelector('#formulario form textarea[name=preview]').innerHTML = noticia.preview;
+            document.querySelector('#formulario form textarea[name=descripcion]').innerHTML = noticia.descripcion;
         },
         enviar: async function(id_noticia){
             let estatus = this.validar();
@@ -129,6 +129,44 @@ document.addEventListener('DOMContentLoaded', function(){
         },
     };
 
+    let archivo = {
+        texto: document.querySelector('#ruta span'),
+        ruta: document.querySelector('#ruta input'),
+        contenido: document.querySelector('#archivo'),
+        options: document.querySelectorAll('#archivo option'),
+        load: function(noticia){
+            for(let i = 1; i <= this.options.length; i++){
+                if(i == noticia.archivo){
+                    this.options[i - 1].selected = true;
+                    this.cambiarArchivo(i, noticia);
+                }
+            }
+            this.contenido.addEventListener('change', function(evento){
+                archivo.cambiarArchivo(this.value, noticia);
+            });
+        },
+        cambiarArchivo: function(tipo, noticia){
+            if(tipo == 1){
+                this.texto.innerHTML = 'Imagen';
+                this.ruta.type = 'file';
+                this.ruta.value = '';
+            }else if(tipo == 2){
+                this.texto.innerHTML = 'Video';
+                this.ruta.type = 'text';
+                this.ruta.placeholder = 'Link al video';
+                this.ruta.value = '';
+            }else{
+                this.texto.innerHTML = 'Audio';
+                this.ruta.type = 'text';
+                this.ruta.placeholder = 'Link al audio';
+                this.ruta.value = '';
+            }
+            if(noticia.archivo == tipo + '' && noticia.archivo != '1'){
+                this.ruta.value = noticia.ruta;
+            }
+        },
+    };
+
     /** Carga la seccion deportes entera. */
     async function load(){
         if(localstorage.load('LaMiraToken')){
@@ -141,6 +179,7 @@ document.addEventListener('DOMContentLoaded', function(){
                 respuesta = await api.getData('/noticia/' + route.findGetParameter('noticia'));
                 if(respuesta.status){
                     formulario.load(respuesta.datos.noticia);
+                    archivo.load(respuesta.datos.noticia);
                 }
                 respuesta2 = await api.getData('/categorias');
                 if(respuesta2.status){

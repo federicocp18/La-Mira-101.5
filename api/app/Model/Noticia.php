@@ -137,7 +137,7 @@
 		public static function create($datos){
 			$db = DBConnection::getConeccion();
 			
-			$query = "INSERT INTO noticias (titulo, descripcion, id_categoria, preview, imagen) VALUES (:titulo, :descripcion, :id_categoria, :preview, :imagen)";
+			$query = "INSERT INTO noticias (titulo, descripcion, id_categoria, preview, archivo, ruta) VALUES (:titulo, :descripcion, :id_categoria, :preview, :archivo, :ruta)";
 				
 			$stmt = $db->prepare($query);
 			
@@ -146,7 +146,8 @@
 				':descripcion'		=> $datos['descripcion'],
 				':id_categoria'		=> $datos['id_categoria'],
 				':preview'			=> $datos['preview'],
-				':imagen'			=> $datos['imagen']
+				':archivo'			=> $datos['archivo'],
+				':ruta'			=> $datos['ruta']
 			]);
 			
 			if(!$stmt->rowCount()){
@@ -157,7 +158,7 @@
 		public function update($datos){
 			$db = DBConnection::getConeccion();
 			
-			$query = "UPDATE noticias SET titulo = :titulo, id_categoria = :id_categoria, preview = :preview, descripcion = :descripcion, imagen = :imagen WHERE id_noticia = $this->id_noticia";
+			$query = "UPDATE noticias SET titulo = :titulo, id_categoria = :id_categoria, preview = :preview, descripcion = :descripcion, archivo = :archivo, ruta = :ruta WHERE id_noticia = $this->id_noticia";
 			
 			$stmt = $db->prepare($query);
 			
@@ -166,7 +167,8 @@
 				':id_categoria'=> $datos['id_categoria'],
 				':preview'		=> $datos['preview'],
 				':descripcion'		=> $datos['descripcion'],
-				':imagen'		=> $datos['imagen']
+				':archivo'		=> $datos['archivo'],
+				':ruta'			=> $datos['ruta']
 			]);
 			
 			if(!$stmt->rowCount()){

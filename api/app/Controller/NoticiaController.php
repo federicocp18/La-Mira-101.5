@@ -97,30 +97,34 @@
 			try{
 				// $validator = new Validator($datos, $reglas);
 
-				if(isset($_FILES['imagen']['tmp_name']) && '' != $_FILES['imagen']['tmp_name']){
-					$extension = pathinfo($_FILES['imagen']['name']);
-					$extension = $extension['extension'];
-					$erFoto = "/^(jpg|png|jpeg)$/i";
-					$envio = preg_match_all($erFoto,$extension,$array);
-					if(!$envio){
+				if(isset($_POST['archivo']) && $_POST['archivo'] == 1){
+					if(isset($_FILES['ruta']['tmp_name']) && '' != $_FILES['ruta']['tmp_name']){
+						$extension = pathinfo($_FILES['ruta']['name']);
+						$extension = $extension['extension'];
+						$erFoto = "/^(jpg|png|jpeg)$/i";
+						$envio = preg_match_all($erFoto,$extension,$array);
+						if(!$envio){
+							View::render([
+								'status' => 0,
+								'error' => 'La imagen debe ser extension JPG/JPEG o PNG.'
+							]);
+							die();
+						}
+						
+						$db = DBConnection::getConeccion();
+						$numero = $db->query("SHOW TABLE STATUS LIKE 'noticias'")->fetch(PDO::FETCH_ASSOC)['Auto_increment'];
+						$ruta_img = "$numero.$extension";
+						
+						move_uploaded_file($_FILES['ruta']['tmp_name'], "../../public/img/noticias/$ruta_img");
+					}else{
 						View::render([
 							'status' => 0,
-							'error' => 'La imagen debe ser extension JPG/JPEG o PNG.'
+							'error' => 'La imagen es obligatoria.'
 						]);
 						die();
 					}
-					
-					$db = DBConnection::getConeccion();
-					$numero = $db->query("SHOW TABLE STATUS LIKE 'noticias'")->fetch(PDO::FETCH_ASSOC)['Auto_increment'];
-					$imagen = "$numero.$extension";
-					
-					move_uploaded_file($_FILES['imagen']['tmp_name'], "../../public/img/noticias/$imagen");
 				}else{
-					View::render([
-						'status' => 0,
-						'error' => 'La imagen es obligatoria.'
-					]);
-					die();
+					$ruta_img = $_POST['ruta'];
 				}
 
 				$newData = [
@@ -128,7 +132,8 @@
 					'descripcion' => $_POST['descripcion'],
 					'preview' => $_POST['preview'],
 					'id_categoria' => $_POST['id_categoria'],
-					'imagen' => $imagen
+					'archivo' => $_POST['archivo'],
+					'ruta' => $ruta_img
 				];
 
 				Noticia::create($newData);
@@ -157,26 +162,30 @@
 
 				// $validator = new Validator($datos, $reglas);
 
-				if(isset($_FILES['imagen']['tmp_name']) && '' != $_FILES['imagen']['tmp_name']){
-					$extension = pathinfo($_FILES['imagen']['name']);
-					$extension = $extension['extension'];
-					$erFoto = "/^(jpg|png|jpeg)$/i";
-					$envio = preg_match_all($erFoto,$extension,$array);
-					if(!$envio){
-						View::render([
-							'status' => 0,
-							'error' => 'La imagen debe ser extension JPG/JPEG o PNG.'
-						]);
-						die();
-					}
+				if(isset($_POST['archivo']) && $_POST['archivo'] == 1){
+					if(isset($_FILES['ruta']['tmp_name']) && '' != $_FILES['ruta']['tmp_name']){
+						$extension = pathinfo($_FILES['ruta']['name']);
+						$extension = $extension['extension'];
+						$erFoto = "/^(jpg|png|jpeg)$/i";
+						$envio = preg_match_all($erFoto,$extension,$array);
+						if(!$envio){
+							View::render([
+								'status' => 0,
+								'error' => 'La imagen debe ser extension JPG/JPEG o PNG.'
+							]);
+							die();
+						}
+							
+						$numero = $noticia->id_noticia;
+						$ruta_img = "$numero.$extension";
 						
-					$numero = $noticia->id_noticia;
-					$imagen = "$numero.$extension";
-					
-					unlink("../../public/img/noticias/$noticia->imagen");
-					move_uploaded_file($_FILES['imagen']['tmp_name'], "../../public/img/noticias/$imagen");
+						unlink("../../public/img/noticias/$noticia->ruta");
+						move_uploaded_file($_FILES['ruta']['tmp_name'], "../../public/img/noticias/$ruta_img");
+					}else{
+						$ruta_img = $noticia->ruta;
+					}
 				}else{
-					$imagen = $noticia->imagen;
+					$ruta_img = $_POST['ruta'];
 				}
 
 				$newData = [
@@ -184,7 +193,8 @@
 					'descripcion' => $_POST['descripcion'],
 					'preview' => $_POST['preview'],
 					'id_categoria' => $_POST['id_categoria'],
-					'imagen' => $imagen
+					'archivo' => $_POST['archivo'],
+					'ruta' => $ruta_img
 				];
 
 				$noticia->update($newData);
@@ -213,7 +223,9 @@
 
 				// $validator = new Validator($datos, $reglas);
 
-				unlink("../../public/img/noticias/$noticia->imagen");
+				if($noticia->archivo == 1){
+					unlink("../../public/img/noticias/$noticia->ruta");
+				}
 
 				$noticia->delete();
 				

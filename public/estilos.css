@@ -123,6 +123,13 @@ main{
 	font-size: 0.9em;
 	padding: 0.6em;
 }
+.cuadricula img,
+.cuadricula iframe{
+	width: 100%;
+	height: 250px;
+	object-fit: cover;
+	border: none;
+}
 
 
 #ver_contenido{
@@ -329,6 +336,30 @@ td{
 
 .agregar{
 	text-align: center;
+	display: flex;
+	justify-content: space-between;
+	flex-wrap: wrap;
+}
+
+.agregar div:first-of-type{
+	flex-basis: 100%;
+}
+
+.agregar div:first-of-type span{
+	flex-basis: 100%;
+}
+
+.agregar div{
+	margin-top: 1rem;
+	flex-basis: 50%;
+	display: flex;
+	justify-content: center;
+	flex-wrap: wrap;
+	min-height: 5rem;
+}
+
+.agregar small{
+	flex-basis: 100%;
 }
 
 .agregar span{
@@ -510,9 +541,6 @@ main{
 	font-size: 1.1em;
 	margin: auto;
 	padding: 1em 0;
-	width: 100%;
-}
-iframe{
 	width: 100%;
 }
 

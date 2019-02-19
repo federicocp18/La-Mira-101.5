@@ -19,15 +19,16 @@ document.addEventListener('DOMContentLoaded', function(){
                     let categoria_nombre = categoria.obtener(categoria_seleccionada);
                     window.location.replace(route.url + '/panel_' + categoria_nombre.toLowerCase() + '.html');
                 }else{
-                    console.log(respuesta.error);
+                    console.log(respuesta);
                 }
             }
         },
         validar : function(){
             let titulo = document.querySelector('input[name=titulo]');
-            let imagen = document.querySelector('input[name=imagen]');
+            let ruta = document.querySelector('input[name=ruta]');
             let preview = document.querySelector('textarea[name=preview]');
             let descripcion = document.querySelector('textarea[name=descripcion]');
+            let archivo = document.querySelector('select[name=archivo]');
 
             let enviar = true;
             let respuesta = validation.required(titulo.value);
@@ -42,10 +43,10 @@ document.addEventListener('DOMContentLoaded', function(){
                 }
             }
 
-            respuesta = validation.required(imagen.value);
+            respuesta = validation.required(ruta.value);
             if(!respuesta.status){
                 enviar = false;
-                imagen.nextElementSibling.innerHTML = respuesta.message;
+                ruta.nextElementSibling.innerHTML = respuesta.message;
             }
 
             respuesta = validation.required(preview.value);
@@ -64,6 +65,12 @@ document.addEventListener('DOMContentLoaded', function(){
             if(!respuesta.status){
                 enviar = false;
                 descripcion.nextElementSibling.innerHTML = respuesta.message;
+            }
+
+            respuesta = validation.required(archivo.value);
+            if(!respuesta.status){
+                enviar = false;
+                archivo.nextElementSibling.innerHTML = respuesta.message;
             }
 
             if(enviar){
@@ -130,6 +137,31 @@ document.addEventListener('DOMContentLoaded', function(){
         },
     };
 
+    let archivo = {
+        texto: document.querySelector('#ruta span'),
+        ruta: document.querySelector('#ruta input'),
+        contenido: document.querySelector('#archivo'),
+        load: function(){
+            this.contenido.addEventListener('change', function(evento){
+                archivo.cambiarArchivo(this.value);
+            });
+        },
+        cambiarArchivo: function(tipo){
+            if(tipo == 1){
+                this.texto.innerHTML = 'Imagen';
+                this.ruta.type = 'file';
+            }else if(tipo == 2){
+                this.texto.innerHTML = 'Video';
+                this.ruta.type = 'text';
+                this.ruta.placeholder = 'Link al video';
+            }else{
+                this.texto.innerHTML = 'Audio';
+                this.ruta.type = 'text';
+                this.ruta.placeholder = 'Link al audio';
+            }
+        },
+    };
+
     /** Carga la seccion deportes entera. */
     async function load(){
         if(localstorage.load('LaMiraToken')){
@@ -140,6 +172,7 @@ document.addEventListener('DOMContentLoaded', function(){
             if(respuesta.status){
                 sesion.load();
                 formulario.load();
+                archivo.load();
                 respuesta = await api.getData('/categorias');
                 if(respuesta.status){
                     categoria.load(respuesta.datos.categorias);

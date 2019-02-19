@@ -46,26 +46,49 @@
 
 <form class="agregar" method="post" enctype="multipart/form-data" action="#">
 
-<span>Titulo</span>
-<input type="text" name="titulo"/>
-<small></small>
 
-<span>Imagen</span>
-<input type="file" name="imagen"/>
+	<div>
+		<span>Selecciona que vas a subir</span>
+		<select id="archivo" name="archivo">
+			<option value="1">Imagen</option>
+			<option value="2">Video</option>
+			<option value="3">Audio</option>
+		</select>
+		<small></small>
+	</div>
 
-<div>
-<span>Preview</span>
-<textarea name="preview" rows="10" cols="50"></textarea>
-<small></small>
+	<div>
+		<span>Titulo</span>
+		<input type="text" name="titulo" placeholder="Titulo de la noticia..."/>
+		<small></small>
+	</div>
 
-<span>Descripcion</span>
-<textarea name="descripcion" rows="10" cols="50"></textarea>
-<small></small>
-</div>
+	<div id="ruta">
+		<span>Imagen</span>
+		<input type="file" name="ruta"/>
+		<small></small>
+	</div>
 
-<select id='categoria' name="id_categoria"></select>
+	<div>
+		<span>Preview</span>
+		<textarea name="preview" rows="10" cols="50" placeholder="Preview de la noticia..."></textarea>
+		<small></small>
+	</div>
 
-<input type="submit" value="aceptar" />
+	<div>
+		<span>Descripcion</span>
+		<textarea name="descripcion" rows="10" cols="50" placeholder="Descripcion de la noticia..."></textarea>
+		<small></small>
+	</div>
+
+	<div>
+		<select id="categoria" name="id_categoria"></select>
+		<small></small>
+	</div>
+
+	<div>
+		<input type="submit" value="aceptar" />
+	</div>
 
 </form>
 </section>

@@ -18,18 +18,11 @@ document.addEventListener('DOMContentLoaded', function(){
 								img.src = 'img/noticias/' + data[posicion].ruta;
 								img.alt = data[posicion].titulo;
 								picture.appendChild(img);
-							}else if(data[posicion].archivo == 2){
-								let iframe = document.createElement('iframe');
-								iframe.src = data[posicion].ruta;
-								picture.appendChild(iframe);
 							}else{
-								let audio = document.createElement('audio');
-								audio.controls = true;
-								picture.appendChild(audio);
-
-									let source = document.createElement('source');
-									source.src = data[posicion].ruta;
-									audio.appendChild(source);
+                                let iframe = document.createElement('iframe');
+                                iframe.src = data[posicion].ruta;
+                                iframe.allowFullscreen = true;
+								picture.appendChild(iframe);
 							}
 
                             let h3 = document.createElement('h3');
@@ -62,18 +55,11 @@ document.addEventListener('DOMContentLoaded', function(){
 								img.src = 'img/noticias/' + data[posicion].ruta;
 								img.alt = data[posicion].titulo;
 								picture.appendChild(img);
-							}else if(data[posicion].archivo == 2){
-								let iframe = document.createElement('iframe');
-								iframe.src = data[posicion].ruta;
-								picture.appendChild(iframe);
 							}else{
-								let audio = document.createElement('audio');
-								audio.controls = true;
-								picture.appendChild(audio);
-
-									let source = document.createElement('source');
-									source.src = data[posicion].ruta;
-									audio.appendChild(source);
+                                let iframe = document.createElement('iframe');
+								iframe.src = data[posicion].ruta;
+                                iframe.allowFullscreen = true;
+								picture.appendChild(iframe);
 							}
 
                             let h3 = document.createElement('h3');
@@ -106,18 +92,11 @@ document.addEventListener('DOMContentLoaded', function(){
 								img.src = 'img/noticias/' + data[posicion].ruta;
 								img.alt = data[posicion].titulo;
 								picture.appendChild(img);
-							}else if(data[posicion].archivo == 2){
-								let iframe = document.createElement('iframe');
-								iframe.src = data[posicion].ruta;
-								picture.appendChild(iframe);
 							}else{
-								let audio = document.createElement('audio');
-								audio.controls = true;
-								picture.appendChild(audio);
-
-									let source = document.createElement('source');
-									source.src = data[posicion].ruta;
-									audio.appendChild(source);
+                                let iframe = document.createElement('iframe');
+								iframe.src = data[posicion].ruta;
+                                iframe.allowFullscreen = true;
+								picture.appendChild(iframe);
 							}
 
                             let h3 = document.createElement('h3');
@@ -150,18 +129,11 @@ document.addEventListener('DOMContentLoaded', function(){
 								img.src = 'img/noticias/' + data[posicion].ruta;
 								img.alt = data[posicion].titulo;
 								picture.appendChild(img);
-							}else if(data[posicion].archivo == 2){
-								let iframe = document.createElement('iframe');
-								iframe.src = data[posicion].ruta;
-								picture.appendChild(iframe);
 							}else{
-								let audio = document.createElement('audio');
-								audio.controls = true;
-								picture.appendChild(audio);
-
-									let source = document.createElement('source');
-									source.src = data[posicion].ruta;
-									audio.appendChild(source);
+                                let iframe = document.createElement('iframe');
+								iframe.src = data[posicion].ruta;
+                                iframe.allowFullscreen = true;
+								picture.appendChild(iframe);
 							}
 
                             let h3 = document.createElement('h3');
@@ -193,19 +165,12 @@ document.addEventListener('DOMContentLoaded', function(){
 								let img = document.createElement('img');
 								img.src = 'img/noticias/' + data[posicion].ruta;
 								img.alt = data[posicion].titulo;
+                                iframe.allowFullscreen = true;
 								picture.appendChild(img);
-							}else if(data[posicion].archivo == 2){
-								let iframe = document.createElement('iframe');
+							}else{
+                                let iframe = document.createElement('iframe');
 								iframe.src = data[posicion].ruta;
 								picture.appendChild(iframe);
-							}else{
-								let audio = document.createElement('audio');
-								audio.controls = true;
-								picture.appendChild(audio);
-
-									let source = document.createElement('source');
-									source.src = data[posicion].ruta;
-									audio.appendChild(source);
 							}
 
                             let h3 = document.createElement('h3');
@@ -238,18 +203,11 @@ document.addEventListener('DOMContentLoaded', function(){
 								img.src = 'img/noticias/' + data[posicion].ruta;
 								img.alt = data[posicion].titulo;
 								picture.appendChild(img);
-							}else if(data[posicion].archivo == 2){
-								let iframe = document.createElement('iframe');
-								iframe.src = data[posicion].ruta;
-								picture.appendChild(iframe);
 							}else{
-								let audio = document.createElement('audio');
-								audio.controls = true;
-								picture.appendChild(audio);
-
-									let source = document.createElement('source');
-									source.src = data[posicion].ruta;
-									audio.appendChild(source);
+                                let iframe = document.createElement('iframe');
+								iframe.src = data[posicion].ruta;
+                                iframe.allowFullscreen = true;
+								picture.appendChild(iframe);
 							}
 
                             let h3 = document.createElement('h3');
@@ -282,18 +240,11 @@ document.addEventListener('DOMContentLoaded', function(){
 								img.src = 'img/noticias/' + data[posicion].ruta;
 								img.alt = data[posicion].titulo;
 								picture.appendChild(img);
-							}else if(data[posicion].archivo == 2){
-								let iframe = document.createElement('iframe');
-								iframe.src = data[posicion].ruta;
-								picture.appendChild(iframe);
 							}else{
-								let audio = document.createElement('audio');
-								audio.controls = true;
-								picture.appendChild(audio);
-
-									let source = document.createElement('source');
-									source.src = data[posicion].ruta;
-									audio.appendChild(source);
+                                let iframe = document.createElement('iframe');
+								iframe.src = data[posicion].ruta;
+                                iframe.allowFullscreen = true;
+								picture.appendChild(iframe);
 							}
 
                             let h3 = document.createElement('h3');

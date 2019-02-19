@@ -8,7 +8,7 @@ var validation = {
         }else{
             return {
                 'status' : 0,
-                'message' : 'El dato es oblogatorio.'
+                'message' : 'El dato es obligatorio.'
             };
         }
     },

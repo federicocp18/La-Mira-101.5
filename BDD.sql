@@ -45,48 +45,18 @@ INSERT INTO
 	noticias (id_noticia, titulo, descripcion, preview, archivo, ruta, id_categoria)
 VALUES
 	(1, 'Noticia Nacional 1.', 'Descripcion de noticia.', 'Preview de noticia.', 1, '1.jpg', 1),
-	(2, 'Noticia Nacional 2.', 'Descripcion de noticia.', 'Preview de noticia.', 2, 'https://www.youtube.com/embed/tgbNymZ7vqY'
-'https://www.youtube.com/embed/tgbNymZ7vqY'
-'https://www.youtube.com/embed/tgbNymZ7vqY'
-'https://www.youtube.com/embed/tgbNymZ7vqY'
-'https://www.youtube.com/embed/tgbNymZ7vqY'
-'https://www.youtube.com/embed/tgbNymZ7vqY'
-'https://www.youtube.com/embed/tgbNymZ7vqY', 1),
-	(3, 'Noticia Nacional 3.', 'Descripcion de noticia.', 'Preview de noticia.', 3, 'https://www.computerhope.com/jargon/m/example.mp3', 1),
-	(4, 'Noticia Local 1.', 'Descripcion de noticia.', 'Preview de noticia.', 2, 'https://www.youtube.com/embed/tgbNymZ7vqY'
-'https://www.youtube.com/embed/tgbNymZ7vqY'
-'https://www.youtube.com/embed/tgbNymZ7vqY'
-'https://www.youtube.com/embed/tgbNymZ7vqY'
-'https://www.youtube.com/embed/tgbNymZ7vqY'
-'https://www.youtube.com/embed/tgbNymZ7vqY'
-'https://www.youtube.com/embed/tgbNymZ7vqY', 2),
+	(2, 'Noticia Nacional 2.', 'Descripcion de noticia.', 'Preview de noticia.', 2, 'https://www.youtube.com/embed/tgbNymZ7vqY', 1),
+	(3, 'Noticia Nacional 3.', 'Descripcion de noticia.', 'Preview de noticia.', 3, 'https://www.ivoox.com/player_ej_32623681_4_1.html?c1=ff6600', 1),
+	(4, 'Noticia Local 1.', 'Descripcion de noticia.', 'Preview de noticia.', 2, 'https://www.youtube.com/embed/tgbNymZ7vqY', 2),
 	(5, 'Noticia Local 2.', 'Descripcion de noticia.', 'Preview de noticia.', 1, '1.jpg', 2),
 	(6, 'Noticia Local 3.', 'Descripcion de noticia.', 'Preview de noticia.', 1, '1.jpg', 2),
-	(7, 'Noticia Local 4.', 'Descripcion de noticia.', 'Preview de noticia.', 3, 'https://www.computerhope.com/jargon/m/example.mp3', 2),
-	(8, 'Noticia Interior 1.', 'Descripcion de noticia.', 'Preview de noticia.', 3, 'https://www.computerhope.com/jargon/m/example.mp3', 3),
-	(9, 'Noticia Interior 2.', 'Descripcion de noticia.', 'Preview de noticia.', 2, 'https://www.youtube.com/embed/tgbNymZ7vqY'
-'https://www.youtube.com/embed/tgbNymZ7vqY'
-'https://www.youtube.com/embed/tgbNymZ7vqY'
-'https://www.youtube.com/embed/tgbNymZ7vqY'
-'https://www.youtube.com/embed/tgbNymZ7vqY'
-'https://www.youtube.com/embed/tgbNymZ7vqY'
-'https://www.youtube.com/embed/tgbNymZ7vqY', 3),
+	(7, 'Noticia Local 4.', 'Descripcion de noticia.', 'Preview de noticia.', 3, 'https://www.ivoox.com/player_ej_32623681_4_1.html?c1=ff6600', 2),
+	(8, 'Noticia Interior 1.', 'Descripcion de noticia.', 'Preview de noticia.', 3, 'https://www.ivoox.com/player_ej_32623681_4_1.html?c1=ff6600', 3),
+	(9, 'Noticia Interior 2.', 'Descripcion de noticia.', 'Preview de noticia.', 2, 'https://www.youtube.com/embed/tgbNymZ7vqY', 3),
 	(10, 'Noticia Economía 1.', 'Descripcion de noticia.', 'Preview de noticia.', 1, '1.jpg', 4),
 	(11, 'Noticia Política 1.', 'Descripcion de noticia.', 'Preview de noticia.', 2, 'https://www.youtube.com/embed/tgbNymZ7vqY', 5),
-	(12, 'Noticia Política 2.', 'Descripcion de noticia.', 'Preview de noticia.', 2, 'https://www.youtube.com/embed/tgbNymZ7vqY'
-'https://www.youtube.com/embed/tgbNymZ7vqY'
-'https://www.youtube.com/embed/tgbNymZ7vqY'
-'https://www.youtube.com/embed/tgbNymZ7vqY'
-'https://www.youtube.com/embed/tgbNymZ7vqY'
-'https://www.youtube.com/embed/tgbNymZ7vqY'
-'https://www.youtube.com/embed/tgbNymZ7vqY', 5),
-	(13, 'Noticia Política 1.', 'Descripcion de noticia.', 'Preview de noticia.', 2, 'https://www.youtube.com/embed/tgbNymZ7vqY'
-'https://www.youtube.com/embed/tgbNymZ7vqY'
-'https://www.youtube.com/embed/tgbNymZ7vqY'
-'https://www.youtube.com/embed/tgbNymZ7vqY'
-'https://www.youtube.com/embed/tgbNymZ7vqY'
-'https://www.youtube.com/embed/tgbNymZ7vqY'
-'https://www.youtube.com/embed/tgbNymZ7vqY', 5),
+	(12, 'Noticia Política 2.', 'Descripcion de noticia.', 'Preview de noticia.', 2, 'https://www.youtube.com/embed/tgbNymZ7vqY', 5),
+	(13, 'Noticia Política 1.', 'Descripcion de noticia.', 'Preview de noticia.', 2, 'https://www.youtube.com/embed/tgbNymZ7vqY', 5),
 	(14, 'Noticia Social 1.', 'Descripcion de noticia.', 'Preview de noticia.', 1, '1.jpg', 6),
 	(15, 'Noticia Deporte 1.', 'Descripcion de noticia.', 'Preview de noticia.', 1, '1.jpg', 7),
-	(16, 'Noticia Deporte 2.', 'Descripcion de noticia.', 'Preview de noticia.', 3, 'https://www.computerhope.com/jargon/m/example.mp3', 7);
+	(16, 'Noticia Deporte 2.', 'Descripcion de noticia.', 'Preview de noticia.', 3, 'https://www.ivoox.com/player_ej_32623681_4_1.html?c1=ff6600', 7);

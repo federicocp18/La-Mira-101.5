@@ -18,18 +18,11 @@ document.addEventListener('DOMContentLoaded', function(){
                         img.src = 'img/noticias/' + data[posicion].ruta;
                         img.alt = data[posicion].titulo;
                         td2.appendChild(img);
-                    }else if(data[posicion].archivo == 2){
+                    }else{
                         let iframe = document.createElement('iframe');
                         iframe.src = data[posicion].ruta;
+                        iframe.allowFullscreen = true;
                         td2.appendChild(iframe);
-                    }else{
-                        let audio = document.createElement('audio');
-                        audio.controls = true;
-                        td2.appendChild(audio);
-
-                            let source = document.createElement('source');
-                            source.src = data[posicion].ruta;
-                            audio.appendChild(source);
                     }
 
                     let td3 = document.createElement('td');
