@@ -284,6 +284,7 @@ footer picture img{
 table{
 	border: 10px solid white;
 	padding: 1em 0;
+	color: white;
 }
 table img{
 	width: 100%;
