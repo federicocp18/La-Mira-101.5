@@ -215,12 +215,12 @@ footer picture img{
 }
 #log_panel h2{
 	text-align: center;
-	color: #4d4d4d;
+	color: white;
 	margin: 15px 0;
 }
 #log_panel small{
 	text-align: center;
-	color: #4d4d4d;
+	color: white;
 	display: block;
 	font-weight: bold;
 	font-size: 15px;
@@ -232,7 +232,7 @@ footer picture img{
 #log_panel form span{
 	display: inline-block;
 	width: 100px;
-	color: #4d4d4d;
+	color: white;
 	font-weight: bold;
 	margin: 15px 0;
 	text-align: left;
@@ -309,11 +309,11 @@ td{
 
 #tabla_noticias h2{
 	text-align: center;
-	color: #4d4d4d;
+	color: white;
 	padding-top: 3em;
 }#tabla_noticias small{
 	text-align: center;
-	color: #4d4d4d;
+	color: white;
 	display: block;
 	font-weight: bold;
 	font-size: 15px;
@@ -372,7 +372,7 @@ td{
 	vertical-align: top;
 	display: inline-block;
 	width: 100px;
-	color: #4d4d4d;
+	color: white;
 	font-weight: bold;
 	margin-top: 6px;
 }
@@ -430,7 +430,7 @@ td{
 
 #formulario h2{
 	text-align: center;
-	color: #4d4d4d;
+	color: white;
 	padding-top: 4em;
 }
 
