@@ -165,11 +165,11 @@ document.addEventListener('DOMContentLoaded', function(){
 								let img = document.createElement('img');
 								img.src = 'img/noticias/' + data[posicion].ruta;
 								img.alt = data[posicion].titulo;
-                                iframe.allowFullscreen = true;
 								picture.appendChild(img);
 							}else{
                                 let iframe = document.createElement('iframe');
 								iframe.src = data[posicion].ruta;
+                                iframe.allowFullscreen = true;
 								picture.appendChild(iframe);
 							}
 
@@ -231,6 +231,7 @@ document.addEventListener('DOMContentLoaded', function(){
 
                     let article = document.createElement('article');
                     a.appendChild(article);
+                    console.log(data[posicion]);
 
                         let picture = document.createElement('picture');
                         article.appendChild(picture);
