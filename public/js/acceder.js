@@ -14,7 +14,7 @@ document.addEventListener('DOMContentLoaded', function(){
             let respuesta = await api.sendData('/login', formData);
             if(respuesta.status){
                 localstorage.save('LaMiraToken', respuesta.token);
-                window.location.replace(route.url + '/panel_politica.html');
+                window.location.replace(route.url + '/panel_nacionales.html');
             }else{
 
             }

@@ -15,9 +15,33 @@ document.addEventListener('DOMContentLoaded', function(){
                 let formData = new FormData(formulario.contenido);
                 let respuesta = await api.sendData('/noticia/crear', formData);
                 if(respuesta.status){
+                    let categoria_nombre;
+
                     let categoria_seleccionada = document.querySelector('#categoria').value;
-                    let categoria_nombre = categoria.obtener(categoria_seleccionada);
-                    window.location.replace(route.url + '/panel_' + categoria_nombre.toLowerCase() + '.html');
+                    switch(categoria_seleccionada){
+                        case '1':
+                            categoria_nombre = 'nacionales';
+                        break;
+                        case '2':
+                            categoria_nombre = 'locales';
+                        break;
+                        case '3':
+                            categoria_nombre = 'interior';
+                        break;
+                        case '4':
+                            categoria_nombre = 'economia';
+                        break;
+                        case '5':
+                            categoria_nombre = 'politica';
+                        break;
+                        case '6':
+                            categoria_nombre = 'social';
+                        break;
+                        case '7':
+                            categoria_nombre = 'deportes';
+                        break;
+                    }
+                    window.location.replace(route.url + '/panel_' + categoria_nombre + '.html');
                 }else{
                     console.log(respuesta);
                 }
